@@ -38,7 +38,6 @@ interface IrowItem {
   name: string;
   description: string;
   price?: number | undefined | null;
-  checked?: any;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -99,7 +98,7 @@ export const View = (props): JSX.Element => {
 
   const [showEditModal, setShowEditModal] = useState(false);
 
-  const [checked, setChecked] = useState();
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
 
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
@@ -239,7 +238,6 @@ export const View = (props): JSX.Element => {
           name: name,
           description: description,
           price: price,
-          checked: checked,
         };
       } else {
         const LastId = formData[formData.length - 1].id;
@@ -249,7 +247,6 @@ export const View = (props): JSX.Element => {
           name: name,
           description: description,
           price: price,
-          checked: checked,
         };
       }
 
