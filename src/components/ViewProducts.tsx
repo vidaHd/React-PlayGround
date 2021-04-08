@@ -19,6 +19,7 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import { includes } from "cypress/types/lodash";
 
 interface Iclases {
   modal?: string;
@@ -263,12 +264,23 @@ export const View = (props): JSX.Element => {
     }
   }
 
-  const DeleteAll = () => {
-    return;
+  const Delet = () => {
+    const delet = formData.filter((a) => !selectedIds.includes(a.id));
+    setFormData(delet);
   };
 
   function handelerSelected(id) {
-    return;
+    const Ids = selectedIds;
+
+    if (Ids.includes(id)) {
+      const delet = selectedIds.filter((a) => a != id);
+      setSelectedIds(delet);
+      console.log(delet);
+    } else {
+      Ids.push(id);
+      setSelectedIds(Ids);
+      console.log(Ids);
+    }
   }
 
   return (
@@ -331,7 +343,7 @@ export const View = (props): JSX.Element => {
           className={classes.btnD}
           variant="contained"
           color="secondary"
-          onClick={DeleteAll}
+          onClick={Delet}
           id="btnAdd"
         >
           delet All
