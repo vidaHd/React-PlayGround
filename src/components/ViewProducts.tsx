@@ -123,7 +123,6 @@ export const View = (props): JSX.Element => {
     if (objJson === null) {
       objJson = [];
     }
-    //اظافه شدن ای دی
     for (let i = 0; i < objJson.length; i++) {
       objJson[i].id = i;
       const tests = _.get(objJson, [i, "id"], []);
