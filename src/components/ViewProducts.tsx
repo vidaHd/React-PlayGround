@@ -351,7 +351,7 @@ export const View = (props): JSX.Element => {
                 <TableCell align="right">
                   <Checkbox />
                 </TableCell>
-                <TableCell align="right">Edt</TableCell>
+                <TableCell align="right">Edit</TableCell>
                 <TableCell align="right">Delete</TableCell>
                 <TableCell align="right">#</TableCell>
                 <TableCell align="right">id</TableCell>
