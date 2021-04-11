@@ -275,14 +275,18 @@ export const View = (props): JSX.Element => {
     if (Ids.includes(id)) {
       const delet = selectedIds.filter((a) => a != id);
       setSelectedIds(delet);
-      console.log(delet);
     } else {
       Ids.push(id);
       setSelectedIds(Ids);
-      console.log(Ids);
     }
   }
 
+  function handelerSelectedAll() {
+    const checkbox = formData.map(function (element) {
+      return element.id;
+    });
+    setSelectedIds(checkbox);
+  }
   return (
     <>
       {showEditModal && (
@@ -357,7 +361,7 @@ export const View = (props): JSX.Element => {
             <TableHead>
               <TableRow>
                 <TableCell align="right">
-                  <Checkbox />
+                  <Checkbox onClick={handelerSelectedAll} />
                 </TableCell>
                 <TableCell align="right">Edit</TableCell>
                 <TableCell align="right">Delete</TableCell>
@@ -372,7 +376,14 @@ export const View = (props): JSX.Element => {
               {formData.map((row: IrowItem, index: number) => (
                 <TableRow>
                   <TableCell align="right">
-                    <Checkbox onClick={() => handelerSelected(row.id)} />
+                    {selectedIds.includes(row.id) ? (
+                      <Checkbox
+                        onClick={() => handelerSelected(row.id)}
+                        checked={true}
+                      />
+                    ) : (
+                      <Checkbox checked={false} />
+                    )}
                   </TableCell>
                   <TableCell>
                     <Button
