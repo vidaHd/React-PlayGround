@@ -18,6 +18,15 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import BottomNavigation from "@material-ui/core/BottomNavigation";
+import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
+import RestoreIcon from "@material-ui/icons/Restore";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
+import Brightness3Icon from "@material-ui/icons/Brightness3";
+import Brightness5Icon from "@material-ui/icons/Brightness5";
+import { theme } from "../index";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 interface Iitem {
   name: string;
@@ -124,6 +133,10 @@ export default function PersistentDrawerRight(props: IpersistentDrawerRight) {
           <Typography variant="h6" noWrap className={classes.title}>
             {props.title}
           </Typography>
+          <BottomNavigation>
+            <BottomNavigationAction icon={<Brightness3Icon />}  />
+            <BottomNavigationAction icon={<Brightness5Icon />} />
+          </BottomNavigation>
           <IconButton
             color="inherit"
             aria-label="open drawer"

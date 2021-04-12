@@ -13,11 +13,7 @@ const Product = () => {
       color: "#000",
       route: "/Dashboard",
     },
-    {
-      name: "setting",
-      color: "#CD5C5C",
-      route: "/product",
-    },
+
     {
       name: "orders",
       color: "#000",

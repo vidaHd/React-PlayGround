@@ -20,6 +20,8 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { includes } from "cypress/types/lodash";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import DarkMode from "./DarkMode";
 
 interface Iclases {
   modal?: string;
@@ -61,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 50,
     overflowY: "scroll",
     minHeight: 100,
+    backgroundColor: theme.palette.background.paper,
   },
   paper: {
     padding: theme.spacing(2),
@@ -288,7 +291,10 @@ export const View = (props): JSX.Element => {
     setSelectedIds(checkbox);
   }
   return (
+    // <ThemeProvider>
     <>
+      {/* <GlobalStyle /> */}
+
       {showEditModal && (
         <EditModalFunction
           openEditModal={showEditModal}
@@ -297,7 +303,6 @@ export const View = (props): JSX.Element => {
           update={updateformData}
         />
       )}
-
       <div id="form">
         <form
           className={classes.forms}
@@ -331,7 +336,6 @@ export const View = (props): JSX.Element => {
             inputRef={descriptionRef}
           />
         </form>
-
         <Button
           className={classes.btn}
           variant="contained"
@@ -427,5 +431,6 @@ export const View = (props): JSX.Element => {
         </Card>
       </div>
     </>
+    // </ThemeProvider>
   );
 };
