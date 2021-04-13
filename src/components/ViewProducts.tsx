@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    color: theme.palette.text.secondary,
   },
   root: {
     flexGrow: 1,
@@ -59,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 50,
     overflowY: "scroll",
     minHeight: 100,
+    color: theme.palette.text.secondary,
   },
   paper: {
     padding: theme.spacing(2),
@@ -82,12 +84,14 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     marginTop: "3%",
+    color: theme.palette.text.secondary,
   },
   inp: {
     display: "flex",
     textAlign: "center",
     alignItems: "center",
     margin: "auto",
+    color: theme.palette.text.secondary,
   },
 }));
 
@@ -308,6 +312,7 @@ export const View = (props): JSX.Element => {
             value={name}
             inputRef={nameRef}
             onKeyDown={FocusName}
+            color="primary"
           />
           <TextField
             id="inputDescription"

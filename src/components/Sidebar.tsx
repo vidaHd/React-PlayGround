@@ -23,6 +23,9 @@ import { lightBlue } from "@material-ui/core/colors";
 import { deepOrange } from "@material-ui/core/colors";
 import { deepPurple } from "@material-ui/core/colors";
 import { Switch } from "@material-ui/core";
+import Brightness3Icon from "@material-ui/icons/Brightness3";
+import Brightness5Icon from "@material-ui/icons/Brightness3";
+import Brightness6Icon from "@material-ui/icons/Brightness6";
 
 interface Iitem {
   name: string;
@@ -156,8 +159,15 @@ export default function PersistentDrawerRight(props: IpersistentDrawerRight) {
               {props.title}
             </Typography>
 
-            <Switch checked={darkState} onChange={handleThemeChange} />
+            {/* <Switch
+              checked={darkState}
+              onChange={handleThemeChange}
+              icon={darkState ? <Brightness5Icon /> : <Brightness3Icon />}
+            /> */}
 
+            <IconButton onClick={() => setDarkState(!darkState)}>
+              {darkState ? <Brightness6Icon /> : <Brightness5Icon />}
+            </IconButton>
             <IconButton
               color="inherit"
               aria-label="open drawer"

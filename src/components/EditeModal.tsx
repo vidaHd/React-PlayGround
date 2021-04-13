@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  useMemo,
-  useCallback,
-} from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Fade from "@material-ui/core/Fade";
@@ -24,15 +18,13 @@ const useStyles = makeStyles((theme) => ({
     width: "50%",
     margin: "auto",
     borderCollapse: "collapse",
-    border: "0.1px solid gray",
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
-    color: theme.palette.text.secondary,
     backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
     boxShadow: theme.shadows[5],
+    color: theme.palette.text.secondary,
   },
   btn: {
     marginTop: 60,
