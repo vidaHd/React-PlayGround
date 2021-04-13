@@ -10,6 +10,12 @@ import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { theme } from "./index";
 import Checkbox from "@material-ui/core/Checkbox";
 
+import Introduction from "./translations/en.json";
+
+import Advantages from "./translations/en.json";
+
+import LanguageSelector from "./components/Languege";
+
 function App() {
   // const [darkMode, setDarkMode] = useState(false);
 

@@ -98,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const View = (props): JSX.Element => {
-  const classes: Iclases = useStyles();
+  const classes: Iclases = useStyles({ isDarkMode: true });
 
   const [showEditModal, setShowEditModal] = useState(false);
 
@@ -386,7 +386,10 @@ export const View = (props): JSX.Element => {
                         checked={true}
                       />
                     ) : (
-                      <Checkbox checked={false} />
+                      <Checkbox
+                        onClick={() => handelerSelected(row.id)}
+                        checked={false}
+                      />
                     )}
                   </TableCell>
                   <TableCell>

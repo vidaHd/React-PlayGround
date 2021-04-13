@@ -134,7 +134,7 @@ export default function PersistentDrawerRight(props: IpersistentDrawerRight) {
             {props.title}
           </Typography>
           <BottomNavigation>
-            <BottomNavigationAction icon={<Brightness3Icon />}  />
+            <BottomNavigationAction icon={<Brightness3Icon />} />
             <BottomNavigationAction icon={<Brightness5Icon />} />
           </BottomNavigation>
           <IconButton

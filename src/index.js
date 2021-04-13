@@ -26,6 +26,22 @@ export const theme = createMuiTheme({
       main: "#102027",
     },
   },
+  dark:{
+    type: "dark",
+    secondary: {
+      main: "#b9f6ca",
+    },
+    grey: {
+      800: "#000000",
+      900: "#121212",
+    },
+    background: {
+      paper: "#102027",
+    },
+    primary: {
+      main: "#102027",
+    },
+  }
 });
 
 export const themes = createMuiTheme({
