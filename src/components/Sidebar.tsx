@@ -126,7 +126,10 @@ export default function PersistentDrawerRight(props: IpersistentDrawerRight) {
     setOpen(false);
   };
 
+  // localStorage.setItem("myDark", darkState);
+
   const handleThemeChange = () => {
+    const Dark = localStorage.getItem("myDark");
     setDarkState(!darkState);
   };
 
@@ -165,7 +168,7 @@ export default function PersistentDrawerRight(props: IpersistentDrawerRight) {
               icon={darkState ? <Brightness5Icon /> : <Brightness3Icon />}
             /> */}
 
-            <IconButton onClick={() => setDarkState(!darkState)}>
+            <IconButton onClick={handleThemeChange}>
               {darkState ? <Brightness6Icon /> : <Brightness5Icon />}
             </IconButton>
             <IconButton
