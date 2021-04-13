@@ -277,7 +277,7 @@ export const View = (props): JSX.Element => {
       setSelectedIds(delet);
     } else {
       Ids.push(id);
-      setSelectedIds(Ids);
+      setSelectedIds((prevState) => [...prevState, id]);
     }
   }
 
@@ -285,6 +285,7 @@ export const View = (props): JSX.Element => {
     const checkbox = formData.map(function (element) {
       return element.id;
     });
+
     setSelectedIds(checkbox);
   }
   return (
