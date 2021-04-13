@@ -16,12 +16,8 @@ import EditModalFunction from "./EditeModal";
 import _ from "lodash";
 import Checkbox from "@material-ui/core/Checkbox";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import { includes } from "cypress/types/lodash";
-import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import DarkMode from "./DarkMode";
 
 interface Iclases {
   modal?: string;
@@ -63,13 +59,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 50,
     overflowY: "scroll",
     minHeight: 100,
-    backgroundColor: theme.palette.background.paper,
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
-    backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
   },
@@ -98,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const View = (props): JSX.Element => {
-  const classes: Iclases = useStyles({ isDarkMode: true });
+  const classes: Iclases = useStyles({ darkMode: true });
 
   const [showEditModal, setShowEditModal] = useState(false);
 
@@ -129,7 +123,6 @@ export const View = (props): JSX.Element => {
     for (let i = 0; i < objJson.length; i++) {
       objJson[i].id = i;
       const tests = _.get(objJson, [i, "id"], []);
-      console.log(tests);
     }
 
     setFormData(objJson);
@@ -291,10 +284,7 @@ export const View = (props): JSX.Element => {
     setSelectedIds(checkbox);
   }
   return (
-    // <ThemeProvider>
     <>
-      {/* <GlobalStyle /> */}
-
       {showEditModal && (
         <EditModalFunction
           openEditModal={showEditModal}
@@ -392,7 +382,7 @@ export const View = (props): JSX.Element => {
                       />
                     )}
                   </TableCell>
-                  <TableCell>
+                  <TableCell align="right">
                     <Button
                       color="secondary"
                       className={classes.button}
@@ -434,6 +424,5 @@ export const View = (props): JSX.Element => {
         </Card>
       </div>
     </>
-    // </ThemeProvider>
   );
 };

@@ -12,21 +12,17 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import RestoreIcon from "@material-ui/icons/Restore";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
-import Brightness3Icon from "@material-ui/icons/Brightness3";
-import Brightness5Icon from "@material-ui/icons/Brightness5";
-import { theme } from "../index";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { orange } from "@material-ui/core/colors";
+import { lightBlue } from "@material-ui/core/colors";
+import { deepOrange } from "@material-ui/core/colors";
+import { deepPurple } from "@material-ui/core/colors";
+import { Switch } from "@material-ui/core";
 
 interface Iitem {
   name: string;
@@ -102,10 +98,18 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export default function PersistentDrawerRight(props: IpersistentDrawerRight) {
   const { items } = props;
+
   const classes = useStyles();
+
   const theme = useTheme();
   const [open, setOpen] = useState(false);
+
   const [itemList, setItemlist] = useState<Iitem[]>([]);
+
+  const [darkState, setDarkState] = useState(false);
+  const palletType = darkState ? "dark" : "light";
+  const mainPrimaryColor = darkState ? orange[500] : lightBlue[500];
+  const mainSecondaryColor = darkState ? deepOrange[900] : deepPurple[500];
 
   useEffect(() => {
     setItemlist(items);
@@ -119,85 +123,103 @@ export default function PersistentDrawerRight(props: IpersistentDrawerRight) {
     setOpen(false);
   };
 
+  const handleThemeChange = () => {
+    setDarkState(!darkState);
+  };
+
+  const darkTheme = createMuiTheme({
+    palette: {
+      type: palletType,
+
+      primary: {
+        main: mainPrimaryColor,
+      },
+
+      secondary: {
+        main: mainSecondaryColor,
+      },
+    },
+  });
+
   return (
-    <div className={classes.root}>
-      <CssBaseline />
+    <ThemeProvider theme={darkTheme}>
+      <div className={classes.root}>
+        <CssBaseline />
+        <AppBar
+          position="fixed"
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
+        >
+          <Toolbar>
+            <Typography variant="h6" noWrap className={classes.title}>
+              {props.title}
+            </Typography>
 
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar>
-          <Typography variant="h6" noWrap className={classes.title}>
-            {props.title}
-          </Typography>
-          <BottomNavigation>
-            <BottomNavigationAction icon={<Brightness3Icon />} />
-            <BottomNavigationAction icon={<Brightness5Icon />} />
-          </BottomNavigation>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="end"
-            onClick={handleDrawerOpen}
-            className={clsx(open && classes.hide)}
-            id="opens"
-          >
-            <MenuIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
+            <Switch checked={darkState} onChange={handleThemeChange} />
 
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      >
-        <div className={classes.drawerHeader} />
-      </main>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="end"
+              onClick={handleDrawerOpen}
+              className={clsx(open && classes.hide)}
+              id="opens"
+            >
+              <MenuIcon />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
 
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="right"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
-        </div>
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <List>
-              {itemList.map((item) => (
-                <Link to={item.route}>
-                  <ListItem>
-                    <ListItemText style={{ color: item.color }}>
-                      {item.name}
-                    </ListItemText>
-                  </ListItem>
-                </Link>
-              ))}
-            </List>
-          </AccordionSummary>
-        </Accordion>
-      </Drawer>
+        <main
+          className={clsx(classes.content, {
+            [classes.contentShift]: open,
+          })}
+        >
+          <div className={classes.drawerHeader} />
+        </main>
 
-      <div className={classes.root}></div>
-    </div>
+        <Drawer
+          className={classes.drawer}
+          variant="persistent"
+          anchor="right"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <div className={classes.drawerHeader}>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === "rtl" ? (
+                <ChevronLeftIcon />
+              ) : (
+                <ChevronRightIcon />
+              )}
+            </IconButton>
+          </div>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <List>
+                {itemList.map((item) => (
+                  <Link to={item.route}>
+                    <ListItem>
+                      <ListItemText style={{ color: item.color }}>
+                        {item.name}
+                      </ListItemText>
+                    </ListItem>
+                  </Link>
+                ))}
+              </List>
+            </AccordionSummary>
+          </Accordion>
+        </Drawer>
+
+        <div className={classes.root}></div>
+      </div>
+    </ThemeProvider>
   );
 }

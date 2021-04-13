@@ -5,39 +5,19 @@ import Login from "./components/Login";
 import NotFound from "./components/NotFound";
 import Order from "./components/Order";
 import "./App.css";
-import React, { useEffect, useState } from "react";
-import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import { theme } from "./index";
-import Checkbox from "@material-ui/core/Checkbox";
-
-import Introduction from "./translations/en.json";
-
-import Advantages from "./translations/en.json";
-
-import LanguageSelector from "./components/Languege";
 
 function App() {
-  // const [darkMode, setDarkMode] = useState(false);
-
-  // const theme = createMuiTheme({
-  //   palette: {
-  //     type: darkMode ? "dark" : "light",
-  //   },
-  // });
   return (
-    <ThemeProvider theme={theme}>
-      {/* <Checkbox checked={darkMode} onChange={() => setDarkMode(!darkMode)} /> */}
-      <Router>
-        <Switch>
-          <Route path="/" exact component={Login} />
-          <Route path="/dashboard" component={Dashboard} />
-          <Route path="/product" component={Product} />
-          <Route path="/order" component={Order} />
+    <Router>
+      <Switch>
+        <Route path="/" exact component={Login} />
+        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/product" component={Product} />
+        <Route path="/order" component={Order} />
 
-          <Route path="*" component={NotFound} />
-        </Switch>
-      </Router>
-    </ThemeProvider>
+        <Route path="*" component={NotFound} />
+      </Switch>
+    </Router>
   );
 }
 
