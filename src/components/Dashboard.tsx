@@ -6,7 +6,7 @@ interface Iitem {
   name: string;
   color: string;
   route: string;
-  darkState?: boolean;
+  title?: string;
 }
 
 const Dashboard = () => {
@@ -17,13 +17,16 @@ const Dashboard = () => {
       name: "product",
       color: "#000",
       route: "/product",
-      darkState: true,
     },
     {
       name: "orders",
       color: "#000",
       route: "/order",
-      darkState: true,
+    },
+    {
+      name: "Languege",
+      color: "#000",
+      route: "/Languege",
     },
   ];
 

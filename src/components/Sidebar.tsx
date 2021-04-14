@@ -32,6 +32,7 @@ interface Iitem {
   name: string;
   color: string;
   route: string;
+  title?: string;
 }
 interface IpersistentDrawerRight {
   items: Iitem[];
@@ -211,25 +212,24 @@ export default function PersistentDrawerRight(props: IpersistentDrawerRight) {
               )}
             </IconButton>
           </div>
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <List>
-                {itemList.map((item) => (
-                  <Link to={item.route}>
+          {itemList.map((item) => (
+            <Accordion>
+              <AccordionSummary
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <List>
+                  <Link to={item.route} style={{ textDecoration: "none" }}>
                     <ListItem>
                       <ListItemText style={{ color: item.color }}>
                         {item.name}
                       </ListItemText>
                     </ListItem>
                   </Link>
-                ))}
-              </List>
-            </AccordionSummary>
-          </Accordion>
+                </List>
+              </AccordionSummary>
+            </Accordion>
+          ))}
         </Drawer>
 
         <div className={classes.root}></div>
