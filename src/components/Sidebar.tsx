@@ -15,17 +15,13 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Typography from "@material-ui/core/Typography";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { orange } from "@material-ui/core/colors";
 import { lightBlue } from "@material-ui/core/colors";
 import { deepOrange } from "@material-ui/core/colors";
 import { deepPurple } from "@material-ui/core/colors";
-import { Switch } from "@material-ui/core";
-import Brightness3Icon from "@material-ui/icons/Brightness3";
 import Brightness5Icon from "@material-ui/icons/Brightness3";
-import Brightness6Icon from "@material-ui/icons/Brightness6";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
 
 interface Iitem {
@@ -132,8 +128,6 @@ export default function PersistentDrawerRight(props: IpersistentDrawerRight) {
 
   useEffect(() => {
     const JsonResult = JSON.stringify(!darkState);
-    console.log(JsonResult);
-
     localStorage.setItem("darkState", JsonResult);
   }, [darkState]);
 

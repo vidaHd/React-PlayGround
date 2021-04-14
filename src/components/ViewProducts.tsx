@@ -352,23 +352,16 @@ export const View = (props): JSX.Element => {
           send order
         </Button>
 
-        {setSelectedIds.length > 0 ? (
-          <Button
-            className={classes.btnD}
-            variant="contained"
-            color="secondary"
-            onClick={Delet}
-            id="btnAdd"
-          >
-            delet All
-          </Button>
-        ) : (
-          <Tooltip title="Filter list">
-            <IconButton aria-label="filter list">
-              <FilterListIcon />
-            </IconButton>
-          </Tooltip>
-        )}
+        <Button
+          className={classes.btnD}
+          variant="contained"
+          color="secondary"
+          onClick={Delet}
+          id="btnAdd"
+          disabled={selectedIds.length > 0 ? false : true}
+        >
+          delet All
+        </Button>
 
         <TableContainer className={classes.root} component={Paper}>
           <Table
