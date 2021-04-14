@@ -1,6 +1,5 @@
 import PersistentDrawerRight from "./Sidebar";
 import React from "react";
-import Checkbox from "@material-ui/core/Checkbox";
 
 interface Iitem {
   name: string;
