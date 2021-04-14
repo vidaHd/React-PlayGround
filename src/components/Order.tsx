@@ -14,11 +14,6 @@ const Dashboard = () => {
       route: "/product",
     },
     {
-      name: "setting",
-      color: "#CD5C5C",
-      route: "/product",
-    },
-    {
       name: "dashboard",
       color: "#000",
       route: "/Dashboard",
