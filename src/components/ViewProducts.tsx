@@ -18,6 +18,9 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+import Tooltip from "@material-ui/core/Tooltip";
+import FilterListIcon from "@material-ui/icons/FilterList";
 
 interface Iclases {
   modal?: string;
@@ -73,6 +76,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 70,
     position: "absolute",
     left: "45%",
+    backgroundColor: theme.palette.text.secondary,
   },
   btnD: {
     marginTop: 130,
@@ -198,6 +202,7 @@ export const View = (props): JSX.Element => {
     });
 
     setShowEditModal(false);
+
     setFormData(newdata);
     const JsonNewFormEditData = JSON.stringify(newdata);
     localStorage.setItem("formData", JsonNewFormEditData);
@@ -282,12 +287,16 @@ export const View = (props): JSX.Element => {
   }
 
   function handelerSelectedAll() {
-    const checkbox = formData.map(function (element) {
-      return element.id;
-    });
-
-    setSelectedIds(checkbox);
+    if (formData.length != setSelectedIds.length) {
+      const checkbox = formData.map(function (element) {
+        return element.id;
+      });
+      setSelectedIds(checkbox);
+    } else {
+      setSelectedIds([]);
+    }
   }
+
   return (
     <>
       {showEditModal && (
@@ -343,15 +352,24 @@ export const View = (props): JSX.Element => {
           send order
         </Button>
 
-        <Button
-          className={classes.btnD}
-          variant="contained"
-          color="secondary"
-          onClick={Delet}
-          id="btnAdd"
-        >
-          delet All
-        </Button>
+        {setSelectedIds.length > 0 ? (
+          <Button
+            className={classes.btnD}
+            variant="contained"
+            color="secondary"
+            onClick={Delet}
+            id="btnAdd"
+          >
+            delet All
+          </Button>
+        ) : (
+          <Tooltip title="Filter list">
+            <IconButton aria-label="filter list">
+              <FilterListIcon />
+            </IconButton>
+          </Tooltip>
+        )}
+
         <TableContainer className={classes.root} component={Paper}>
           <Table
             className={classes.table}
@@ -363,8 +381,20 @@ export const View = (props): JSX.Element => {
                 <TableCell align="right">
                   <Checkbox onClick={handelerSelectedAll} />
                 </TableCell>
-                <TableCell align="right">Edit</TableCell>
-                <TableCell align="right">Delete</TableCell>
+                <TableCell align="right">
+                  <Tooltip title="edit">
+                    <IconButton color="primary" aria-label="delete">
+                      <EditIcon />
+                    </IconButton>
+                  </Tooltip>
+                </TableCell>
+                <TableCell align="right">
+                  <Tooltip title="Delete">
+                    <IconButton color="primary" aria-label="delete">
+                      <DeleteIcon />
+                    </IconButton>
+                  </Tooltip>
+                </TableCell>
                 <TableCell align="right">#</TableCell>
                 <TableCell align="right">id</TableCell>
                 <TableCell align="right">name</TableCell>

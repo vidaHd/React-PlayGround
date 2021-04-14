@@ -26,6 +26,7 @@ import { Switch } from "@material-ui/core";
 import Brightness3Icon from "@material-ui/icons/Brightness3";
 import Brightness5Icon from "@material-ui/icons/Brightness3";
 import Brightness6Icon from "@material-ui/icons/Brightness6";
+import WbSunnyIcon from "@material-ui/icons/WbSunny";
 
 interface Iitem {
   name: string;
@@ -109,7 +110,9 @@ export default function PersistentDrawerRight(props: IpersistentDrawerRight) {
 
   const [itemList, setItemlist] = useState<Iitem[]>([]);
 
-  const [darkState, setDarkState] = useState(false);
+  const [darkState, setDarkState] = useState(
+    localStorage.getItem("darkState") === "false"
+  );
   const palletType = darkState ? "dark" : "light";
   const mainPrimaryColor = darkState ? orange[500] : lightBlue[500];
   const mainSecondaryColor = darkState ? deepOrange[900] : deepPurple[500];
@@ -126,10 +129,14 @@ export default function PersistentDrawerRight(props: IpersistentDrawerRight) {
     setOpen(false);
   };
 
-  // localStorage.setItem("myDark", darkState);
+  useEffect(() => {
+    const JsonResult = JSON.stringify(!darkState);
+    console.log(JsonResult);
+
+    localStorage.setItem("darkState", JsonResult);
+  }, [darkState]);
 
   const handleThemeChange = () => {
-    const Dark = localStorage.getItem("myDark");
     setDarkState(!darkState);
   };
 
@@ -162,14 +169,8 @@ export default function PersistentDrawerRight(props: IpersistentDrawerRight) {
               {props.title}
             </Typography>
 
-            {/* <Switch
-              checked={darkState}
-              onChange={handleThemeChange}
-              icon={darkState ? <Brightness5Icon /> : <Brightness3Icon />}
-            /> */}
-
             <IconButton onClick={handleThemeChange}>
-              {darkState ? <Brightness6Icon /> : <Brightness5Icon />}
+              {darkState ? <WbSunnyIcon /> : <Brightness5Icon />}
             </IconButton>
             <IconButton
               color="inherit"
