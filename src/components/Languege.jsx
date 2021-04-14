@@ -1,8 +1,3 @@
-import React from "react";
-
-import { useTranslation } from "react-i18next";
-import Login from "./Login";
-
 const Languege = (props) => {
   return (
     <div>
