@@ -287,7 +287,7 @@ export const View = (props): JSX.Element => {
   }
 
   function handelerSelectedAll() {
-    if (formData.length != setSelectedIds.length) {
+    if (formData.length != selectedIds.length) {
       const checkbox = formData.map(function (element) {
         return element.id;
       });
