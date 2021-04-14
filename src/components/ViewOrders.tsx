@@ -65,12 +65,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ViewOrder = (data) => {
+export const ViewOrder = () => {
   const classes: Iclases = useStyles();
 
   const [nameOrder, setNameOrder] = useState<string>("");
   const [priceOrder, setPriceOrder] = useState<number>();
-  //   const [data, setData] = useState<IviewOrder[]>([]);
+  const [data, setData] = useState<IviewOrder[]>([]);
 
   const focusName = useRef<HTMLInputElement>(null);
   const priceFocuse = useRef<HTMLInputElement>(null);
