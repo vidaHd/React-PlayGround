@@ -18,9 +18,12 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import FilterListIcon from "@material-ui/icons/FilterList";
+import InputBase from "@material-ui/core/InputBase";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import SearchIcon from "@material-ui/icons/Search";
 
 interface Iclases {
   modal?: string;
@@ -33,6 +36,8 @@ interface Iclases {
   inp?: string;
   roots?: string;
   btnD?: string;
+  input?: string;
+  iconButton?: string;
 }
 
 interface IrowItem {
@@ -56,6 +61,19 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     borderCollapse: "collapse",
     border: "0.1px solid gray",
+  },
+  input: {
+    marginLeft: theme.spacing(1),
+    flex: 1,
+    marginTop: 20,
+    position: "absolute",
+    left: "44.5%",
+  },
+  iconButton: {
+    padding: 10,
+    marginTop: 14,
+    position: "absolute",
+    left: "52%",
   },
   roots: {
     width: "20%",
@@ -362,7 +380,18 @@ export const View = (props): JSX.Element => {
         >
           delet All
         </Button>
-
+        <InputBase
+          className={classes.input}
+          placeholder="Search By Name"
+          inputProps={{ "aria-label": "search By Name" }}
+        />
+        <IconButton
+          className={classes.iconButton}
+          type="submit"
+          aria-label="search"
+        >
+          <SearchIcon />
+        </IconButton>
         <TableContainer className={classes.root} component={Paper}>
           <Table
             className={classes.table}
