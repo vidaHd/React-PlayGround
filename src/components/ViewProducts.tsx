@@ -388,7 +388,9 @@ export const View = (props): JSX.Element => {
                     </IconButton>
                   </Tooltip>
                 </TableCell>
-                <TableCell align="right">#</TableCell>
+                <TableCell color="textSecondary" align="right">
+                  #
+                </TableCell>
                 <TableCell align="right">id</TableCell>
                 <TableCell align="right">name</TableCell>
                 <TableCell align="right">description</TableCell>
@@ -429,9 +431,15 @@ export const View = (props): JSX.Element => {
                       data-test-btn-delete={row.id}
                     ></Button>
                   </TableCell>
-                  <TableCell align="right">{index}</TableCell>
+                  <TableCell color="textSecondary" align="right">
+                    {index}
+                  </TableCell>
                   <TableCell align="right">{row.id}</TableCell>
-                  <TableCell align="right" data-test-input-name={row.name}>
+                  <TableCell
+                    color="textSecondary"
+                    align="right"
+                    data-test-input-name={row.name}
+                  >
                     {row.name}
                   </TableCell>
                   <TableCell align="right">{row.description}</TableCell>
