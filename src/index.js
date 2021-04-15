@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import configureStore from "./redux/store/index";
+import rootReducer from "../src/redux/reducer/index";
 
 const store = configureStore();
 

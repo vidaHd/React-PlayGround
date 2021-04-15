@@ -130,6 +130,7 @@ export const View = (props): JSX.Element => {
 
   const [formData, setFormData] = useState<IrowItem[]>([]);
   const [rowinfo, setRowinfo] = useState<any | null>();
+  const [searchValue, setSearchValue] = useState("");
 
   const nameRef = useRef<HTMLInputElement>(null);
   const priceRef = useRef<HTMLInputElement>(null);
@@ -318,6 +319,10 @@ export const View = (props): JSX.Element => {
     }
   }
 
+  const handleSearchInputChanges = (e) => {
+    setSearchValue(e.target.value);
+  };
+
   return (
     <>
       {showEditModal && (
@@ -383,11 +388,15 @@ export const View = (props): JSX.Element => {
         >
           delet All
         </Button>
+
         <InputBase
+          value={searchValue}
           className={classes.input}
           placeholder="Search By Name"
           inputProps={{ "aria-label": "search By Name" }}
+          onChange={handleSearchInputChanges}
         />
+
         <IconButton
           className={classes.iconButton}
           type="submit"

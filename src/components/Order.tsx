@@ -1,5 +1,5 @@
 import PersistentDrawerRight from "./Sidebar";
-import { ViewOrder } from "./ViewOrders";
+import ViewOrder from "./ViewOrders";
 interface Iitem {
   name: string;
   color: string;

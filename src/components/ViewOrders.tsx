@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ViewOrder = () => {
+const ViewOrder = () => {
   const classes: Iclases = useStyles();
 
   const [nameOrder, setNameOrder] = useState<string>("");
@@ -204,7 +204,7 @@ export const ViewOrder = () => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  console.log("===r ", state);
 };
 
 const mapDispatchToProps = (dispatch) => {
