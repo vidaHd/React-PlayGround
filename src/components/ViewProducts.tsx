@@ -290,6 +290,9 @@ export const View = (props): JSX.Element => {
   const Delet = () => {
     const delet = formData.filter((a) => !selectedIds.includes(a.id));
     setFormData(delet);
+
+    const JsonNewFormData = JSON.stringify(delet);
+    localStorage.setItem("formData", JsonNewFormData);
   };
 
   function handelerSelected(id) {
