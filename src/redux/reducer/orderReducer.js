@@ -1,9 +1,6 @@
 import { INCREMENT_ORDER } from "../constans/index";
 
-function orderReducer(
-  state = { orders: [{ id: 1, nameOrder: "vida", priceOrder: 20 }] },
-  action
-) {
+function orderReducer(state = { orders: [] }, action) {
   let newState = {};
 
   switch (action.type) {
