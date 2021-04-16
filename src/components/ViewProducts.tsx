@@ -275,7 +275,7 @@ export const View = (props): JSX.Element => {
         };
       }
 
-      const newformdata = formData;
+      const newformdata = [...formData];
       newformdata.push(information);
       setFormData(newformdata);
 

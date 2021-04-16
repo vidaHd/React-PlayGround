@@ -1,4 +1,4 @@
-import INCREMENT_ORDER from "../constans/index";
+import { INCREMENT_ORDER } from "../constans/index";
 
 export const incrementOrderAction = ({ payload, disPatch }) =>
   disPatch({

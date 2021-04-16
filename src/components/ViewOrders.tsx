@@ -9,11 +9,10 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
 import "../../src/App.css";
 import { incrementOrderAction } from "../redux/actions";
 import { connect } from "react-redux";
+import orderReducer from "../redux/reducer/orderReducer";
 
 interface Iclases {
   modal?: string;
@@ -65,12 +64,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ViewOrder = () => {
+const ViewOrder = (props) => {
+  const { data } = props;
+
   const classes: Iclases = useStyles();
 
   const [nameOrder, setNameOrder] = useState<string>("");
-  const [priceOrder, setPriceOrder] = useState<number>();
-  const [data, setData] = useState<IviewOrder[]>([]);
+  const [priceOrder, setPriceOrder] = useState<number | null>();
+  // const [data, setData] = useState<IviewOrder[]>([]);
 
   const focusName = useRef<HTMLInputElement>(null);
   const priceFocuse = useRef<HTMLInputElement>(null);
@@ -117,6 +118,7 @@ const ViewOrder = () => {
   function addOrderNew() {
     if (validate()) {
       let information;
+
       if (data.length === 0) {
         information = {
           id: 0,
@@ -132,12 +134,14 @@ const ViewOrder = () => {
           priceOrder: priceOrder,
         };
       }
-      //   const newformdata = data;
-      //   newformdata.push(information);
-      //   setData(newformdata);
+
+      const newformdata = [...data];
+      newformdata.push(information);
+
+      props.addOrder(newformdata);
 
       setNameOrder("");
-      setPriceOrder(5);
+      setPriceOrder(null);
     }
   }
 
@@ -204,11 +208,17 @@ const ViewOrder = () => {
 };
 
 const mapStateToProps = (state) => {
-  console.log("===r ", state);
+  const myStates = {
+    data: state.orderReducer.orders,
+  };
+  return myStates;
 };
 
-const mapDispatchToProps = (dispatch) => {
-  console.log(dispatch);
+const mapDispatchToProps = (disPatch) => {
+  const myActions = {
+    addOrder: (payload) => incrementOrderAction({ payload, disPatch }),
+  };
+  return myActions;
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ViewOrder);
