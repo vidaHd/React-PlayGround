@@ -12,7 +12,7 @@ import TableRow from "@material-ui/core/TableRow";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import "../../src/App.css";
-import { Order } from "../redux/actions";
+import { incrementOrderAction } from "../redux/actions";
 import { connect } from "react-redux";
 
 interface Iclases {
