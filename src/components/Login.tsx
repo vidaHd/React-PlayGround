@@ -9,6 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles({
   root: {
@@ -177,4 +178,9 @@ const Login = (): JSX.Element => {
     </>
   );
 };
-export default Login;
+
+const mapDispatchToProps = (disPatch) => {
+  return;
+};
+
+export default connect(null, mapDispatchToProps)(Login);

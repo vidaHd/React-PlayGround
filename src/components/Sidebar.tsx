@@ -23,6 +23,7 @@ import { deepOrange } from "@material-ui/core/colors";
 import { deepPurple } from "@material-ui/core/colors";
 import Brightness5Icon from "@material-ui/icons/Brightness3";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
+import Avatar from "@material-ui/core/Avatar";
 
 interface Iitem {
   name: string;
@@ -205,6 +206,7 @@ export default function PersistentDrawerRight(props: IpersistentDrawerRight) {
                 <ChevronRightIcon />
               )}
             </IconButton>
+            <Avatar>H</Avatar>
           </div>
           {itemList.map((item) => (
             <Accordion>

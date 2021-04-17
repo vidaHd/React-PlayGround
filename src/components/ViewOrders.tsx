@@ -229,6 +229,7 @@ const mapStateToProps = (state) => {
   const myStates = {
     data: state.orderReducer.orders,
   };
+
   return myStates;
 };
 
