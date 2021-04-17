@@ -1,1 +1,2 @@
 export const INCREMENT_ORDER = "INCREMENT_ORDER";
+export const DELETE_ORDER = "DELETE_ORDER";

@@ -11,6 +11,8 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import "../../src/App.css";
 import { incrementOrderAction } from "../redux/actions";
+import { deleteOrderAction } from "../redux/actions";
+
 import { connect } from "react-redux";
 import orderReducer from "../redux/reducer/orderReducer";
 
@@ -22,6 +24,7 @@ interface Iclases {
   forms: string;
   paper?: string;
   button?: string;
+  btnD?: string;
 }
 interface IviewOrder {
   id: number;
@@ -55,7 +58,11 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     left: "45%",
   },
-
+  btnD: {
+    marginTop: 130,
+    position: "absolute",
+    left: "45.5%",
+  },
   forms: {
     padding: 50,
     display: "flex",
@@ -71,7 +78,6 @@ const ViewOrder = (props) => {
 
   const [nameOrder, setNameOrder] = useState<string>("");
   const [priceOrder, setPriceOrder] = useState<number | null>();
-  // const [data, setData] = useState<IviewOrder[]>([]);
 
   const focusName = useRef<HTMLInputElement>(null);
   const priceFocuse = useRef<HTMLInputElement>(null);
@@ -144,7 +150,9 @@ const ViewOrder = (props) => {
       setPriceOrder(null);
     }
   }
-
+  const Delet = () => {
+    props.deleteOrder();
+  };
   return (
     <>
       <div>
@@ -182,6 +190,16 @@ const ViewOrder = (props) => {
           send order
         </Button>
 
+        <Button
+          className={classes.btnD}
+          variant="contained"
+          color="secondary"
+          onClick={Delet}
+          id="btnAdd"
+        >
+          delet All
+        </Button>
+
         <TableContainer className={classes.root} component={Paper}>
           <Table className={classes.table} aria-label="caption table">
             <TableHead>
@@ -217,7 +235,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (disPatch) => {
   const myActions = {
     addOrder: (payload) => incrementOrderAction({ payload, disPatch }),
+    deleteOrder: () => deleteOrderAction({ disPatch }),
   };
+  console.log(myActions);
   return myActions;
 };
 
