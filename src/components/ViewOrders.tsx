@@ -237,7 +237,6 @@ const mapDispatchToProps = (disPatch) => {
     addOrder: (payload) => incrementOrderAction({ payload, disPatch }),
     deleteOrder: () => deleteOrderAction({ disPatch }),
   };
-  console.log(myActions);
   return myActions;
 };
 

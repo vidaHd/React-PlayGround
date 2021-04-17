@@ -3,16 +3,13 @@ import { DELETE_ORDER } from "../constans/index";
 
 function orderReducer(state = { orders: [] }, action) {
   let newState = {};
-  let DeleteState = {};
 
   switch (action.type) {
     case INCREMENT_ORDER:
       newState = { ...state, orders: action.payload };
       break;
     case DELETE_ORDER:
-      DeleteState = {
-        newState,
-      };
+      newState = { ...state, orders: [] };
       break;
     default:
       newState = state;
