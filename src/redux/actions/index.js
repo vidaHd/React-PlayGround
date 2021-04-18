@@ -7,10 +7,12 @@ export const incrementOrderAction = ({ payload, disPatch }) =>
     type: INCREMENT_ORDER,
     payload: payload,
   });
+
 export const deleteOrderAction = ({ disPatch }) =>
   disPatch({
     type: DELETE_ORDER,
   });
+
 export const loginUser = ({ payload, disPatch }) =>
   disPatch({
     type: LOGIN_USER,

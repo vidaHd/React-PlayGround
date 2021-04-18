@@ -1,17 +1,19 @@
 import { LOGIN_USER } from "../constans/index";
 
 function loginReducer(state = { users: {} }, action) {
-  let newUser = {};
+  let User = {};
 
   switch (action.type) {
     case LOGIN_USER:
-      newUser = { ...state, users: action.payload };
+      User = { state, users: action.payload };
+      console.log(User);
+      console.log(action.payload);
       break;
 
     default:
-      newUser = state;
+      User = state;
       break;
   }
-  return newUser;
+  return User;
 }
 export default loginReducer;
