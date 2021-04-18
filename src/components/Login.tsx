@@ -40,7 +40,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Login = (props): JSX.Element => {
+export const Login = (props): JSX.Element => {
   const classes = useStyles();
   const [username, setUserName] = useState<string>("");
   const [password, setPassword] = useState<number>();
@@ -186,8 +186,6 @@ const mapDispatchToProps = (disPatch) => {
   const myUser = {
     addUser: (payload) => loginUser({ payload, disPatch }),
   };
-  console.log(myUser);
-
   return myUser;
 };
 
