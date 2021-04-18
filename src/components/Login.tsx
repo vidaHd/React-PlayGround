@@ -110,7 +110,7 @@ export const Login = (props): JSX.Element => {
   const checkValid = () => {
     if (validation()) {
       history.push("/dashboard");
-      props.addUser();
+      props.addUser(username);
     }
   };
 
@@ -186,6 +186,8 @@ const mapDispatchToProps = (disPatch) => {
   const myUser = {
     addUser: (payload) => loginUser({ payload, disPatch }),
   };
+  console.log(myUser);
+
   return myUser;
 };
 

@@ -5,9 +5,7 @@ function loginReducer(state = { users: {} }, action) {
 
   switch (action.type) {
     case LOGIN_USER:
-      User = { state, users: action.payload };
-      console.log(User);
-      console.log(action.payload);
+      User = { ...state, users: action.payload };
       break;
 
     default:
