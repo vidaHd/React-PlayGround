@@ -206,7 +206,7 @@ export default function PersistentDrawerRight(props: IpersistentDrawerRight) {
                 <ChevronRightIcon />
               )}
             </IconButton>
-            <Avatar>H</Avatar>
+            <Avatar></Avatar>
           </div>
           {itemList.map((item) => (
             <Accordion>

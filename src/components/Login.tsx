@@ -10,6 +10,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
+import { loginUser } from "../redux/actions";
 
 const useStyles = makeStyles({
   root: {
@@ -39,7 +40,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Login = (): JSX.Element => {
+const Login = (props): JSX.Element => {
   const classes = useStyles();
   const [username, setUserName] = useState<string>("");
   const [password, setPassword] = useState<number>();
@@ -105,9 +106,11 @@ const Login = (): JSX.Element => {
       return true;
     }
   };
+
   const checkValid = () => {
     if (validation()) {
       history.push("/dashboard");
+      props.addUser();
     }
   };
 
@@ -180,7 +183,12 @@ const Login = (): JSX.Element => {
 };
 
 const mapDispatchToProps = (disPatch) => {
-  return;
+  const myUser = {
+    addUser: (payload) => loginUser({ payload, disPatch }),
+  };
+  console.log(myUser);
+
+  return myUser;
 };
 
 export default connect(null, mapDispatchToProps)(Login);
