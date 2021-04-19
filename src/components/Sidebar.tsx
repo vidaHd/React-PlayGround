@@ -27,6 +27,7 @@ import Avatar from "@material-ui/core/Avatar";
 import { connect } from "react-redux";
 import loginReducer from "../redux/reducer/loginReducer";
 import { loginUser } from "../redux/actions";
+import Button from "@material-ui/core/Button";
 
 interface Iitem {
   name: string;
@@ -102,7 +103,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-function PersistentDrawerRight(props: IpersistentDrawerRight) {
+export default function PersistentDrawerRight(props: IpersistentDrawerRight) {
   const { items } = props;
   const { data } = props;
 
@@ -213,7 +214,11 @@ function PersistentDrawerRight(props: IpersistentDrawerRight) {
             </IconButton>
 
             <Avatar></Avatar>
-            <Typography variant="h6" noWrap className={classes.title}>
+            <Typography
+              noWrap
+              className={classes.title}
+              style={{ marginLeft: "4%" }}
+            >
               {data}
             </Typography>
           </div>
@@ -235,6 +240,10 @@ function PersistentDrawerRight(props: IpersistentDrawerRight) {
               </AccordionSummary>
             </Accordion>
           ))}
+
+          <Button variant="contained" color="secondary" id="btnAdd">
+            LogOut
+          </Button>
         </Drawer>
 
         <div className={classes.root}></div>
@@ -242,11 +251,3 @@ function PersistentDrawerRight(props: IpersistentDrawerRight) {
     </ThemeProvider>
   );
 }
-const mapStateToProps = (state) => {
-  const myStates = {
-    data: state.logiReducer.users,
-  };
-  return myStates;
-};
-
-export default connect(mapStateToProps, null)(PersistentDrawerRight);

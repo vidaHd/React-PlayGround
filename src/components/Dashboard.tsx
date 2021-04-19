@@ -1,5 +1,8 @@
 import PersistentDrawerRight from "./Sidebar";
 import React from "react";
+import { connect } from "react-redux";
+import loginReducer from "../redux/reducer/loginReducer";
+import { loginUser } from "../redux/actions";
 
 interface Iitem {
   name: string;
@@ -8,7 +11,7 @@ interface Iitem {
   title?: string;
 }
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const [darkState, setDarkState] = React.useState(true);
   const palletType = darkState ? "dark" : "light";
   const items: Iitem[] = [
@@ -31,8 +34,15 @@ const Dashboard = () => {
 
   return (
     <div>
-      <PersistentDrawerRight items={items} title="داشبورد" />
+      <PersistentDrawerRight items={items} title="داشبورد" data={props.data} />
     </div>
   );
 };
-export default Dashboard;
+const mapStateToProps = (state) => {
+  const myStates = {
+    data: state.logiReducer.users,
+  };
+  return myStates;
+};
+
+export default connect(mapStateToProps, null)(Dashboard);

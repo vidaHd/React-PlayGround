@@ -19,11 +19,8 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Tooltip from "@material-ui/core/Tooltip";
-import FilterListIcon from "@material-ui/icons/FilterList";
 import InputBase from "@material-ui/core/InputBase";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
 
 interface Iclases {
   modal?: string;
@@ -280,6 +277,7 @@ export const View = (props): JSX.Element => {
       setFormData(newformdata);
 
       const JsonNewFormData = JSON.stringify(newformdata);
+
       localStorage.setItem("formData", JsonNewFormData);
 
       setName("");
@@ -401,9 +399,7 @@ export const View = (props): JSX.Element => {
           className={classes.iconButton}
           type="submit"
           aria-label="search"
-        >
-          <SearchIcon />
-        </IconButton>
+        ></IconButton>
         <TableContainer className={classes.root} component={Paper}>
           <Table
             className={classes.table}
@@ -439,57 +435,59 @@ export const View = (props): JSX.Element => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {formData.map((row: IrowItem, index: number) => (
-                <TableRow>
-                  <TableCell align="right">
-                    {selectedIds.includes(row.id) ? (
-                      <Checkbox
-                        onClick={() => handelerSelected(row.id)}
-                        checked={true}
-                      />
-                    ) : (
-                      <Checkbox
-                        onClick={() => handelerSelected(row.id)}
-                        checked={false}
-                      />
-                    )}
-                  </TableCell>
-                  <TableCell align="right">
-                    <Button
-                      color="secondary"
-                      className={classes.button}
-                      startIcon={<EditIcon />}
-                      onClick={() => handleOpenEditModal(row.id)}
-                      data-test-btn-edit={row.id}
-                    ></Button>
-                  </TableCell>
-                  <TableCell align="right">
-                    <Button
-                      color="secondary"
-                      className={classes.button}
-                      startIcon={<DeleteIcon />}
-                      onClick={() => handleRemoveItem(row.id)}
-                      data-test-btn-delete={row.id}
-                    ></Button>
-                  </TableCell>
-                  <TableCell color="textSecondary" align="right">
-                    {index}
-                  </TableCell>
-                  <TableCell align="right">{row.id}</TableCell>
-                  <TableCell
-                    color="textSecondary"
-                    align="right"
-                    data-test-input-name={row.name}
-                  >
-                    {row.name}
-                  </TableCell>
-                  <TableCell align="right">{row.description}</TableCell>
-                  <TableCell align="right">{row.price}</TableCell>
-                </TableRow>
-              ))}
+              {Array.isArray(formData) &&
+                formData.map((row: IrowItem, index: number) => (
+                  <TableRow>
+                    <TableCell align="right">
+                      {selectedIds.includes(row.id) ? (
+                        <Checkbox
+                          onClick={() => handelerSelected(row.id)}
+                          checked={true}
+                        />
+                      ) : (
+                        <Checkbox
+                          onClick={() => handelerSelected(row.id)}
+                          checked={false}
+                        />
+                      )}
+                    </TableCell>
+                    <TableCell align="right">
+                      <Button
+                        color="secondary"
+                        className={classes.button}
+                        startIcon={<EditIcon />}
+                        onClick={() => handleOpenEditModal(row.id)}
+                        data-test-btn-edit={row.id}
+                      ></Button>
+                    </TableCell>
+                    <TableCell align="right">
+                      <Button
+                        color="secondary"
+                        className={classes.button}
+                        startIcon={<DeleteIcon />}
+                        onClick={() => handleRemoveItem(row.id)}
+                        data-test-btn-delete={row.id}
+                      ></Button>
+                    </TableCell>
+                    <TableCell color="textSecondary" align="right">
+                      {index}
+                    </TableCell>
+                    <TableCell align="right">{row.id}</TableCell>
+                    <TableCell
+                      color="textSecondary"
+                      align="right"
+                      data-test-input-name={row.name}
+                    >
+                      {row.name}
+                    </TableCell>
+                    <TableCell align="right">{row.description}</TableCell>
+                    <TableCell align="right">{row.price}</TableCell>
+                  </TableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>
+
         <Card className={classes.roots}>
           <CardContent>
             <Typography color="textSecondary">Information</Typography>
