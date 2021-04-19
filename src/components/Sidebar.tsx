@@ -144,7 +144,7 @@ function PersistentDrawerRight(props: IpersistentDrawerRight) {
   };
 
   // const log = () => {
-  //   props.logOut();
+  //   props.logOut;
   // };
 
   const darkTheme = createMuiTheme({
@@ -251,7 +251,9 @@ function PersistentDrawerRight(props: IpersistentDrawerRight) {
             id="btnAdd"
             // onClick={log}
           >
-            LogOut
+            <Link to="/" style={{ textDecoration: "none", color: "#ffff" }}>
+              LogOut
+            </Link>
           </Button>
         </Drawer>
 
