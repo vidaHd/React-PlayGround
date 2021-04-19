@@ -28,6 +28,7 @@ import { connect } from "react-redux";
 import loginReducer from "../redux/reducer/loginReducer";
 import { loginUser } from "../redux/actions";
 import Button from "@material-ui/core/Button";
+import { logOut } from "../redux/actions";
 
 interface Iitem {
   name: string;
@@ -103,7 +104,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export default function PersistentDrawerRight(props: IpersistentDrawerRight) {
+function PersistentDrawerRight(props: IpersistentDrawerRight) {
   const { items } = props;
   const { data } = props;
 
@@ -141,6 +142,10 @@ export default function PersistentDrawerRight(props: IpersistentDrawerRight) {
   const handleThemeChange = () => {
     setDarkState(!darkState);
   };
+
+  // const log = () => {
+  //   props.logOut();
+  // };
 
   const darkTheme = createMuiTheme({
     palette: {
@@ -240,8 +245,12 @@ export default function PersistentDrawerRight(props: IpersistentDrawerRight) {
               </AccordionSummary>
             </Accordion>
           ))}
-
-          <Button variant="contained" color="secondary" id="btnAdd">
+          <Button
+            variant="contained"
+            color="secondary"
+            id="btnAdd"
+            // onClick={log}
+          >
             LogOut
           </Button>
         </Drawer>
@@ -251,3 +260,14 @@ export default function PersistentDrawerRight(props: IpersistentDrawerRight) {
     </ThemeProvider>
   );
 }
+
+const mapDispatchToProps = (disPatch) => {
+  const myActions = {
+    logOut: () => logOut({ disPatch }),
+  };
+
+  console.log(myActions);
+  return myActions;
+};
+
+export default connect(null, mapDispatchToProps)(PersistentDrawerRight);
