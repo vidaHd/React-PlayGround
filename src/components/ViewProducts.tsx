@@ -127,7 +127,7 @@ export const View = (props): JSX.Element => {
 
   const [formData, setFormData] = useState<IrowItem[]>([]);
   const [rowinfo, setRowinfo] = useState<any | null>();
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState<any>();
 
   const nameRef = useRef<HTMLInputElement>(null);
   const priceRef = useRef<HTMLInputElement>(null);
@@ -318,7 +318,32 @@ export const View = (props): JSX.Element => {
   }
 
   const handleSearchInputChanges = (e) => {
-    setSearchValue(e.target.value);
+    // setSearchValue(e.target.value);
+    const a = formData.map((a) => {
+      a.name;
+    });
+    setSearchValue(a);
+    const query = e.target.value;
+    setSearchValue((prevState) => {
+      const filteredData = prevState.searchValue.filter((element) => {
+        element.name === a;
+      });
+      console.log(filteredData);
+      return {
+        query,
+        filteredData,
+      };
+    });
+    // const search = formData.map(function (element) {
+    //   return element.name;
+    // });
+    // setSearchValue(query);
+
+    // const filteredData = searchValue.filter((element) => {
+    //   return element.name;
+    // });
+    // const a = formData.filter((x) => x != search);
+    // setSearchValue(e.target.value);
   };
 
   return (

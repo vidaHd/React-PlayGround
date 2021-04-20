@@ -29,6 +29,7 @@ import loginReducer from "../redux/reducer/loginReducer";
 import { loginUser } from "../redux/actions";
 import Button from "@material-ui/core/Button";
 import { logOut } from "../redux/actions";
+import _ from "lodash";
 
 interface Iitem {
   name: string;
@@ -105,8 +106,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 function PersistentDrawerRight(props: IpersistentDrawerRight) {
-  const { items } = props;
-  const { data } = props;
+  const { items, data } = props;
 
   const classes = useStyles();
 
@@ -162,114 +162,129 @@ function PersistentDrawerRight(props: IpersistentDrawerRight) {
   });
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <div className={classes.root}>
-        <CssBaseline />
-        <AppBar
-          position="fixed"
-          className={clsx(classes.appBar, {
-            [classes.appBarShift]: open,
-          })}
-        >
-          <Toolbar>
-            <Typography variant="h6" noWrap className={classes.title}>
-              {props.title}
-            </Typography>
-
-            <IconButton onClick={handleThemeChange}>
-              {darkState ? <WbSunnyIcon /> : <Brightness5Icon />}
-            </IconButton>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="end"
-              onClick={handleDrawerOpen}
-              className={clsx(open && classes.hide)}
-              id="opens"
-            >
-              <MenuIcon />
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-
-        <main
-          className={clsx(classes.content, {
-            [classes.contentShift]: open,
-          })}
-        >
-          <div className={classes.drawerHeader} />
-        </main>
-
-        <Drawer
-          className={classes.drawer}
-          variant="persistent"
-          anchor="right"
-          open={open}
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-        >
-          <div className={classes.drawerHeader}>
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === "rtl" ? (
-                <ChevronLeftIcon />
-              ) : (
-                <ChevronRightIcon />
-              )}
-            </IconButton>
-
-            <Avatar></Avatar>
-            <Typography
-              noWrap
-              className={classes.title}
-              style={{ marginLeft: "4%" }}
-            >
-              {data}
-            </Typography>
-          </div>
-          {itemList.map((item) => (
-            <Accordion>
-              <AccordionSummary
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <List>
-                  <Link to={item.route} style={{ textDecoration: "none" }}>
-                    <ListItem>
-                      <ListItemText style={{ color: item.color }}>
-                        {item.name}
-                      </ListItemText>
-                    </ListItem>
-                  </Link>
-                </List>
-              </AccordionSummary>
-            </Accordion>
-          ))}
-          <Button
-            variant="contained"
-            color="secondary"
-            id="btnAdd"
-            // onClick={log}
+    <>
+      <ThemeProvider theme={darkTheme}>
+        <div className={classes.root}>
+          <CssBaseline />
+          <AppBar
+            position="fixed"
+            className={clsx(classes.appBar, {
+              [classes.appBarShift]: open,
+            })}
           >
-            <Link to="/" style={{ textDecoration: "none", color: "#ffff" }}>
-              LogOut
-            </Link>
-          </Button>
-        </Drawer>
+            <Toolbar>
+              <Typography variant="h6" noWrap className={classes.title}>
+                {props.title}
+              </Typography>
 
-        <div className={classes.root}></div>
-      </div>
-    </ThemeProvider>
+              <IconButton onClick={handleThemeChange}>
+                {darkState ? <WbSunnyIcon /> : <Brightness5Icon />}
+              </IconButton>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="end"
+                onClick={handleDrawerOpen}
+                className={clsx(open && classes.hide)}
+                id="opens"
+              >
+                <MenuIcon />
+              </IconButton>
+            </Toolbar>
+          </AppBar>
+
+          <main
+            className={clsx(classes.content, {
+              [classes.contentShift]: open,
+            })}
+          >
+            <div className={classes.drawerHeader} />
+          </main>
+
+          <Drawer
+            className={classes.drawer}
+            variant="persistent"
+            anchor="right"
+            open={open}
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+          >
+            <div className={classes.drawerHeader}>
+              <IconButton onClick={handleDrawerClose}>
+                {theme.direction === "rtl" ? (
+                  <ChevronLeftIcon />
+                ) : (
+                  <ChevronRightIcon />
+                )}
+              </IconButton>
+
+              <Avatar></Avatar>
+              <Typography
+                noWrap
+                className={classes.title}
+                style={{ marginLeft: "4%" }}
+              >
+                {data}
+              </Typography>
+            </div>
+            {itemList.map((item) => (
+              <Accordion>
+                <AccordionSummary
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <List>
+                    <Link to={item.route} style={{ textDecoration: "none" }}>
+                      <ListItem>
+                        <ListItemText style={{ color: item.color }}>
+                          {item.name}
+                        </ListItemText>
+                      </ListItem>
+                    </Link>
+                  </List>
+                </AccordionSummary>
+              </Accordion>
+            ))}
+            <Button
+              variant="contained"
+              color="secondary"
+              id="btnAdd"
+              // onClick={log}
+            >
+              <Link to="/" style={{ textDecoration: "none", color: "#ffff" }}>
+                LogOut
+              </Link>
+            </Button>
+          </Drawer>
+
+          <div className={classes.root}></div>
+        </div>
+      </ThemeProvider>
+    </>
   );
 }
+const mapStateToProps = (state) => {
+  const myStates = {
+    // data: state.logiReducer.users,
+    data: _.get(state, ["logiReducer", "users"], {}),
+
+    // _.get(logiReducer, 'users', 'default');
+  };
+  console.log(state);
+  console.log(myStates.data);
+  return myStates;
+};
 
 const mapDispatchToProps = (disPatch) => {
   const myActions = {
     logOut: () => logOut({ disPatch }),
   };
 
-  console.log(myActions);
   return myActions;
 };
 
-export default connect(null, mapDispatchToProps)(PersistentDrawerRight);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PersistentDrawerRight);
