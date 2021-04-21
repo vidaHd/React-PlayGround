@@ -35,6 +35,7 @@ interface Iclases {
   btnD?: string;
   input?: string;
   iconButton?: string;
+  form?: string;
 }
 
 interface IrowItem {
@@ -59,12 +60,20 @@ const useStyles = makeStyles((theme) => ({
     borderCollapse: "collapse",
     border: "0.1px solid gray",
   },
+  form: {
+    display: "flex",
+    flexDirection: "column",
+  },
   input: {
     marginLeft: theme.spacing(1),
     flex: 1,
-    marginTop: 20,
+    marginTop: 340,
     position: "absolute",
-    left: "44.5%",
+    margin: "auto",
+    outline: "none",
+    padding: 10,
+    left: "28%",
+    width: "42%",
   },
   iconButton: {
     padding: 10,
@@ -88,13 +97,13 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
   },
   btn: {
-    marginTop: 70,
+    marginTop: 200,
     position: "absolute",
     left: "45%",
     backgroundColor: theme.palette.text.secondary,
   },
   btnD: {
-    marginTop: 130,
+    marginTop: 270,
     position: "absolute",
     left: "45.5%",
   },
@@ -318,32 +327,13 @@ export const View = (props): JSX.Element => {
   }
 
   const handleSearchInputChanges = (e) => {
-    // setSearchValue(e.target.value);
     const a = formData.map((a) => {
       a.name;
     });
-    setSearchValue(a);
     const query = e.target.value;
-    setSearchValue((prevState) => {
-      const filteredData = prevState.searchValue.filter((element) => {
-        element.name === a;
-      });
-      console.log(filteredData);
-      return {
-        query,
-        filteredData,
-      };
-    });
-    // const search = formData.map(function (element) {
-    //   return element.name;
-    // });
-    // setSearchValue(query);
-
-    // const filteredData = searchValue.filter((element) => {
-    //   return element.name;
-    // });
-    // const a = formData.filter((x) => x != search);
-    // setSearchValue(e.target.value);
+    return {
+      query,
+    };
   };
 
   return (
@@ -356,7 +346,7 @@ export const View = (props): JSX.Element => {
           update={updateformData}
         />
       )}
-      <div id="form">
+      <div className={classes.form}>
         <form
           className={classes.forms}
           noValidate
@@ -411,15 +401,13 @@ export const View = (props): JSX.Element => {
         >
           delet All
         </Button>
-
-        <InputBase
+        <input
+          type="text"
           value={searchValue}
           className={classes.input}
           placeholder="Search By Name"
-          inputProps={{ "aria-label": "search By Name" }}
           onChange={handleSearchInputChanges}
-        />
-
+        ></input>
         <IconButton
           className={classes.iconButton}
           type="submit"
