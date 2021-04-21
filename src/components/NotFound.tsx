@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, useLocation, Link } from "react-router-dom";
+import logo from "../3.png";
 
 function NotFound() {
   const location = useLocation();
@@ -6,8 +7,24 @@ function NotFound() {
   return (
     <div>
       <h3>
-        404! No match for <code>{location.pathname}</code>
+        <img
+          src={logo}
+          style={{ margin: "auto", display: "block", width: "50%" }}
+        />
       </h3>
+      <button
+        style={{
+          textDecoration: "none",
+          margin: "auto",
+          display: "flex",
+          padding: "1%",
+          color: "with",
+        }}
+      >
+        <Link to="/" style={{ textDecoration: "none" }}>
+          go back <code>{location.pathname}</code>
+        </Link>
+      </button>
     </div>
   );
 }
