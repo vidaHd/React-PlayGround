@@ -1,4 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+
+import { connect } from "react-redux";
+import { incrementOrderAction } from "../redux/actions";
+import { deleteOrderAction } from "../redux/actions";
+
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -9,67 +14,10 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+
 import "../../src/App.css";
-import { incrementOrderAction } from "../redux/actions";
-import { deleteOrderAction } from "../redux/actions";
 
-import { connect } from "react-redux";
-import orderReducer from "../redux/reducer/orderReducer";
-
-interface Iclases {
-  modal?: string;
-  table?: string;
-  root: string;
-  btn: string;
-  forms: string;
-  paper?: string;
-  button?: string;
-  btnD?: string;
-}
-interface IviewOrder {
-  id: number;
-  nameOrder: string;
-  priceOrder: number;
-}
-const useStyles = makeStyles((theme) => ({
-  modal: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  root: {
-    flexGrow: 1,
-    marginTop: 200,
-    width: "50%",
-    margin: "auto",
-    borderCollapse: "collapse",
-    border: "0.1px solid gray",
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-  },
-  btn: {
-    marginTop: 70,
-    position: "absolute",
-    left: "45%",
-  },
-  btnD: {
-    marginTop: 130,
-    position: "absolute",
-    left: "45.5%",
-  },
-  forms: {
-    padding: 50,
-    display: "flex",
-    justifyContent: "space-between",
-    marginTop: "3%",
-  },
-}));
+import { Iclases } from "../interface/interface";
 
 const ViewOrder = (props) => {
   const { data } = props;
@@ -94,11 +42,13 @@ const ViewOrder = (props) => {
       priceFocuse.current.focus();
     }
   }
+
   function focusOrderOrder(e) {
     if (e.keyCode === 13 && btnFocus.current && btnFocus.current.focus) {
       btnFocus.current.focus();
     }
   }
+
   const validate = () => {
     if (!nameOrder) {
       alert("نام محصول را وارد کنید");
@@ -113,14 +63,12 @@ const ViewOrder = (props) => {
       return true;
     }
   };
-  const handlechangeNameOrder = (e) => {
-    const value = e.target.value;
-    setNameOrder(value);
-  };
+
   const handleChangePriceOrder = (e) => {
     const value = e.target.value;
     setPriceOrder(value);
   };
+
   function addOrderNew() {
     if (validate()) {
       let information;
@@ -153,6 +101,7 @@ const ViewOrder = (props) => {
   const Delet = () => {
     props.deleteOrder();
   };
+
   return (
     <>
       <div>
@@ -166,7 +115,7 @@ const ViewOrder = (props) => {
             type="text"
             id="standard-basic"
             label="nameOrder"
-            onChange={handlechangeNameOrder}
+            onChange={(e) => setNameOrder(e.target.value)}
             value={nameOrder}
             inputRef={focusName}
             onKeyDown={focusNameOrder}
@@ -242,3 +191,43 @@ const mapDispatchToProps = (disPatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ViewOrder);
+
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  root: {
+    flexGrow: 1,
+    marginTop: 200,
+    width: "50%",
+    margin: "auto",
+    borderCollapse: "collapse",
+    border: "0.1px solid gray",
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+    backgroundColor: theme.palette.background.paper,
+    border: "2px solid #000",
+    boxShadow: theme.shadows[5],
+  },
+  btn: {
+    marginTop: 70,
+    position: "absolute",
+    left: "45%",
+  },
+  btnD: {
+    marginTop: 130,
+    position: "absolute",
+    left: "45.5%",
+  },
+  forms: {
+    padding: 50,
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: "3%",
+  },
+}));

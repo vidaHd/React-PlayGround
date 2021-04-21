@@ -1,10 +1,7 @@
 import PersistentDrawerRight from "./Sidebar";
 import ViewOrder from "./ViewOrders";
-interface Iitem {
-  name: string;
-  color: string;
-  route: string;
-}
+
+import { Iitem } from "../interface/interface";
 
 const Dashboard = () => {
   const items: Iitem[] = [

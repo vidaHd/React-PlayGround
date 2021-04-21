@@ -1,4 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+
+import _ from "lodash";
+
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -11,131 +14,33 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-import "../../src/App.css";
 import EditModalFunction from "./EditeModal";
-import _ from "lodash";
 import Checkbox from "@material-ui/core/Checkbox";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Tooltip from "@material-ui/core/Tooltip";
-import InputBase from "@material-ui/core/InputBase";
 import IconButton from "@material-ui/core/IconButton";
 
-interface Iclases {
-  modal?: string;
-  table?: string;
-  root: string;
-  btn: string;
-  forms: string;
-  paper?: string;
-  button?: string;
-  inp?: string;
-  roots?: string;
-  btnD?: string;
-  input?: string;
-  iconButton?: string;
-  form?: string;
-}
+import "../../src/App.css";
 
-interface IrowItem {
-  id: number;
-  name: string;
-  description: string;
-  price?: number | undefined | null;
-}
-
-const useStyles = makeStyles((theme) => ({
-  modal: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    color: theme.palette.text.secondary,
-  },
-  root: {
-    flexGrow: 1,
-    marginTop: 200,
-    width: "50%",
-    margin: "auto",
-    borderCollapse: "collapse",
-    border: "0.1px solid gray",
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  input: {
-    marginLeft: theme.spacing(1),
-    flex: 1,
-    marginTop: 340,
-    position: "absolute",
-    margin: "auto",
-    outline: "none",
-    padding: 10,
-    left: "28%",
-    width: "42%",
-  },
-  iconButton: {
-    padding: 10,
-    marginTop: 14,
-    position: "absolute",
-    left: "52%",
-  },
-  roots: {
-    width: "20%",
-    margin: "auto",
-    marginTop: 50,
-    overflowY: "scroll",
-    minHeight: 100,
-    color: theme.palette.text.secondary,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-  },
-  btn: {
-    marginTop: 200,
-    position: "absolute",
-    left: "45%",
-    backgroundColor: theme.palette.text.secondary,
-  },
-  btnD: {
-    marginTop: 270,
-    position: "absolute",
-    left: "45.5%",
-  },
-  forms: {
-    padding: 50,
-    display: "flex",
-    justifyContent: "space-between",
-    marginTop: "3%",
-    color: theme.palette.text.secondary,
-  },
-  inp: {
-    display: "flex",
-    textAlign: "center",
-    alignItems: "center",
-    margin: "auto",
-    color: theme.palette.text.secondary,
-  },
-}));
+import { IrowItem } from "../interface/interface";
+import { Iclases } from "../interface/interface";
 
 export const View = (props): JSX.Element => {
   const classes: Iclases = useStyles({ darkMode: true });
 
-  const [showEditModal, setShowEditModal] = useState(false);
-
-  const [selectedIds, setSelectedIds] = useState<number[]>([]);
+  const [formData, setFormData] = useState<IrowItem[]>([]);
 
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [price, setPrice] = useState<number | null>();
 
-  const [formData, setFormData] = useState<IrowItem[]>([]);
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
+
+  const [showEditModal, setShowEditModal] = useState(false);
   const [rowinfo, setRowinfo] = useState<any | null>();
+
   const [searchValue, setSearchValue] = useState<any>();
 
   const nameRef = useRef<HTMLInputElement>(null);
@@ -188,16 +93,6 @@ export const View = (props): JSX.Element => {
       focusbtn.current.focus();
     }
   }
-
-  const handleChangeName = (e) => {
-    const value = e.target.value;
-    setName(value);
-  };
-
-  const handelChangeDescription = (e) => {
-    const value = e.target.value;
-    setDescription(value);
-  };
 
   const handelChangePrice = (e) => {
     const value = e.target.value;
@@ -327,14 +222,9 @@ export const View = (props): JSX.Element => {
   }
 
   const handleSearchInputChanges = (e) => {
-    const a = formData.map((a) => {
-      a.name;
-    });
-    const query = e.target.value;
-    return {
-      query,
-    };
+    formData.filter((x) => x.name.toLowerCase().indexOf(searchValue));
   };
+  console.log(handleSearchInputChanges);
 
   return (
     <>
@@ -357,7 +247,7 @@ export const View = (props): JSX.Element => {
             type="text"
             id="inputName"
             label="name"
-            onChange={handleChangeName}
+            onChange={(e) => setName(e.target.value)}
             value={name}
             inputRef={nameRef}
             onKeyDown={FocusName}
@@ -366,7 +256,7 @@ export const View = (props): JSX.Element => {
           <TextField
             id="inputDescription"
             label="description"
-            onChange={handelChangeDescription}
+            onChange={(e) => setDescription(e.target.value)}
             value={description}
             onKeyDown={FocusPrice}
             inputRef={priceRef}
@@ -406,13 +296,9 @@ export const View = (props): JSX.Element => {
           value={searchValue}
           className={classes.input}
           placeholder="Search By Name"
-          onChange={handleSearchInputChanges}
+          onChange={(e) => handleSearchInputChanges(e.target.value)}
         ></input>
-        <IconButton
-          className={classes.iconButton}
-          type="submit"
-          aria-label="search"
-        ></IconButton>
+
         <TableContainer className={classes.root} component={Paper}>
           <Table
             className={classes.table}
@@ -515,3 +401,80 @@ export const View = (props): JSX.Element => {
     </>
   );
 };
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: theme.palette.text.secondary,
+  },
+  root: {
+    flexGrow: 1,
+    marginTop: 200,
+    width: "50%",
+    margin: "auto",
+    borderCollapse: "collapse",
+    border: "0.1px solid gray",
+  },
+  form: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  input: {
+    marginLeft: theme.spacing(1),
+    flex: 1,
+    marginTop: 340,
+    position: "absolute",
+    margin: "auto",
+    outline: "none",
+    padding: 10,
+    left: "28%",
+    width: "42%",
+  },
+  iconButton: {
+    padding: 10,
+    marginTop: 14,
+    position: "absolute",
+    left: "52%",
+  },
+  roots: {
+    width: "20%",
+    margin: "auto",
+    marginTop: 50,
+    overflowY: "scroll",
+    minHeight: 100,
+    color: theme.palette.text.secondary,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+    border: "2px solid #000",
+    boxShadow: theme.shadows[5],
+  },
+  btn: {
+    marginTop: 200,
+    position: "absolute",
+    left: "45%",
+    backgroundColor: theme.palette.text.secondary,
+  },
+  btnD: {
+    marginTop: 270,
+    position: "absolute",
+    left: "45.5%",
+  },
+  forms: {
+    padding: 50,
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: "3%",
+    color: theme.palette.text.secondary,
+  },
+  inp: {
+    display: "flex",
+    textAlign: "center",
+    alignItems: "center",
+    margin: "auto",
+    color: theme.palette.text.secondary,
+  },
+}));

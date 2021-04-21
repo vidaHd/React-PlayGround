@@ -1,12 +1,5 @@
 import PersistentDrawerRight from "./Sidebar";
-import { connect } from "react-redux";
-
-interface Iitem {
-  name: string;
-  color: string;
-  route: string;
-  title?: string;
-}
+import { Iitem } from "../interface/interface";
 
 const Dashboard = (props) => {
   const items: Iitem[] = [
@@ -30,17 +23,7 @@ const Dashboard = (props) => {
   return (
     <div>
       <PersistentDrawerRight items={items} title="داشبورد" />
-      {/* <p>not err</p> */}
     </div>
   );
 };
-
-const mapStateToProps = (state) => {
-  const myStates = {
-    data: state.logiReducer.users,
-  };
-  console.log(myStates.data);
-  return myStates;
-};
-
-export default connect(mapStateToProps, null)(Dashboard);
+export default Dashboard;

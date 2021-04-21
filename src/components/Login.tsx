@@ -1,4 +1,10 @@
 import { useState, useRef, useEffect } from "react";
+
+import { useHistory } from "react-router-dom";
+
+import { connect } from "react-redux";
+import { loginUser } from "../redux/actions";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -8,37 +14,6 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import { useHistory } from "react-router-dom";
-import { connect } from "react-redux";
-import { loginUser } from "../redux/actions";
-
-const useStyles = makeStyles({
-  root: {
-    width: 600,
-    height: 500,
-    top: "20%",
-    position: "absolute",
-    right: "32%",
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-  inputStyle: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  button: {
-    position: "absolute",
-    right: "44%",
-    bottom: "40px",
-  },
-  textInput: {
-    margin: "20px",
-  },
-});
 
 export const Login = (props): JSX.Element => {
   const classes = useStyles();
@@ -192,3 +167,31 @@ const mapDispatchToProps = (disPatch) => {
 };
 
 export default connect(null, mapDispatchToProps)(Login);
+
+const useStyles = makeStyles({
+  root: {
+    width: 600,
+    height: 500,
+    top: "20%",
+    position: "absolute",
+    right: "32%",
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+  inputStyle: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  button: {
+    position: "absolute",
+    right: "44%",
+    bottom: "40px",
+  },
+  textInput: {
+    margin: "20px",
+  },
+});
