@@ -4,6 +4,7 @@ export interface IrowItem {
   description: string;
   price?: number | undefined | null;
 }
+
 export interface Iclases {
   modal?: string;
   table?: string;
@@ -20,23 +21,20 @@ export interface Iclases {
   form?: string;
   btns?: string;
 }
+
 export interface Iitem {
   name: string;
   color: string;
   route: string;
   title?: string;
 }
-export interface Iitem {
-  name: string;
-  color: string;
-  route: string;
-  title?: string;
-}
+
 export interface Iproduct {
   name: string;
   color: string;
   route: string;
 }
+
 export interface IpersistentDrawerRight {
   items: Iitem[];
   title?: string;

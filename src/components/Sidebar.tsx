@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 
+import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 import _ from "lodash";
 
 import { connect } from "react-redux";
 import { logOut } from "../redux/actions";
 
 import clsx from "clsx";
-
-import { BrowserRouter as Link } from "react-router-dom";
 
 import { makeStyles, useTheme, Theme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -42,6 +43,7 @@ const drawerWidth = 240;
 
 function PersistentDrawerRight(props: IpersistentDrawerRight) {
   const { items, data } = props;
+  const history = useHistory();
 
   const classes = useStyles();
 
@@ -186,6 +188,7 @@ function PersistentDrawerRight(props: IpersistentDrawerRight) {
     </>
   );
 }
+
 const mapStateToProps = (state) => {
   try {
     const serializedState = localStorage.getItem("state");

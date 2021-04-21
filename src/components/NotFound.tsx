@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, useLocation, Link } from "react-router-dom";
+import { BrowserRouter as useLocation, Link } from "react-router-dom";
 import logo from "../3.png";
 
 function NotFound() {
