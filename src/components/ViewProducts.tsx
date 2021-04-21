@@ -32,6 +32,9 @@ export const View = (props): JSX.Element => {
 
   const [formData, setFormData] = useState<IrowItem[]>([]);
 
+  const [formDataSearchValue, setFormDataSearchValue] = useState<IrowItem[]>(
+    []
+  );
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [price, setPrice] = useState<number | null>();
@@ -71,6 +74,12 @@ export const View = (props): JSX.Element => {
       nameRef.current.focus();
     }
   }, []);
+
+  useEffect(() => {
+    if (!searchValue) {
+      setFormDataSearchValue(formData);
+    }
+  }, [searchValue, formData]);
 
   function FocusName(e) {
     if (e.keyCode === 13 && priceRef.current && priceRef.current.focus) {
@@ -222,9 +231,11 @@ export const View = (props): JSX.Element => {
   }
 
   const handleSearchInputChanges = (e) => {
-    formData.filter((x) => x.name.toLowerCase().indexOf(searchValue));
+    setSearchValue(e);
+    const arrSerach = formData.filter((x) => x.name.toLowerCase() === e);
+    setFormDataSearchValue(arrSerach);
+    console.log(arrSerach);
   };
-  console.log(handleSearchInputChanges);
 
   return (
     <>
@@ -335,7 +346,7 @@ export const View = (props): JSX.Element => {
             </TableHead>
             <TableBody>
               {Array.isArray(formData) &&
-                formData.map((row: IrowItem, index: number) => (
+                formDataSearchValue.map((row: IrowItem, index: number) => (
                   <TableRow>
                     <TableCell align="right">
                       {selectedIds.includes(row.id) ? (
