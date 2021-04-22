@@ -197,30 +197,11 @@ function PersistentDrawerRight(props: IpersistentDrawerRight) {
 }
 
 const mapStateToProps = (state) => {
-  try {
-    const serializedState = localStorage.getItem("state");
-    if (serializedState === null) {
-      return undefined;
-    }
-    return JSON.parse(serializedState);
-  } catch (e) {
-    return undefined;
-  }
-  // const myStates = {
+  const myStates = {
+    data: state.logiReducer.users,
+  };
 
-  //   // data: state.logiReducer.users,
-  //   data: _.get(state, ["logiReducer", "users"], "default"),
-
-  //   // _.get(logiReducer, 'users', 'default');
-  // };
-
-  // return myStates;
-  try {
-    const serializedState = JSON.stringify(state);
-    localStorage.setItem("state", serializedState);
-  } catch (e) {
-    // Ignore write errors;
-  }
+  return myStates;
 };
 
 const mapDispatchToProps = (disPatch) => {
