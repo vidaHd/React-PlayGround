@@ -34,6 +34,7 @@
     "@syncfusion/ej2-react-calendars": "^19.1.56",
     "axios": "^0.21.1",
     "cypress": "^6.8.0",
+    "date-fns": "^2.21.1",
     "i18next": "^20.2.1",
     "lodash": "^4.17.21",
     "lodash.get": "^4.4.2",

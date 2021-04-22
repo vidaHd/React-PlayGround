@@ -118,7 +118,7 @@ export const Login = (props): JSX.Element => {
       <p>Date: {`${dateTime.toLocaleDateString()}`}</p>
       <p>Time: {`${dateTime.toLocaleTimeString()}`}</p>
       <p>تاریخ: {`${dateTime.toLocaleDateString("fa-IR")}`}</p>
-      <p>زمان:{`${dateTime.toLocaleTimeString("fa")}`} </p>
+      <p>زمان: {`${dateTime.toLocaleTimeString("fa")}`} </p>
 
       <Card className={classes.root}>
         <CardContent>
