@@ -16,7 +16,6 @@ import {
   Checkbox,
   FormControlLabel,
 } from "@material-ui/core";
-import { DateTimePickerComponent } from "@syncfusion/ej2-react-calendars";
 
 export const Login = (props): JSX.Element => {
   const classes = useStyles();
