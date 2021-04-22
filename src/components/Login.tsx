@@ -17,14 +17,26 @@ import Checkbox from "@material-ui/core/Checkbox";
 
 export const Login = (props): JSX.Element => {
   const classes = useStyles();
+
   const [username, setUserName] = useState<string>("");
   const [password, setPassword] = useState<number>();
   const [repetPassword, setRepetPassword] = useState<number>();
+
+  const [dateTime, setDateTime] = useState(new Date());
+
   const history = useHistory();
+
   const focusName = useRef<HTMLInputElement>();
   const focusPassWord = useRef<HTMLInputElement>(null);
   const focusRepetPassWord = useRef<HTMLInputElement>(null);
   const focusBtn = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const myTime = setInterval(() => setDateTime(new Date()), 1000);
+    return () => {
+      clearInterval(myTime);
+    };
+  }, []);
 
   useEffect(() => {
     if (focusName.current && focusName.current.focus) {
@@ -100,6 +112,8 @@ export const Login = (props): JSX.Element => {
 
   return (
     <>
+      <p>Date: {`${dateTime.toLocaleDateString()}`}</p>
+      <p>Time: {`${dateTime.toLocaleTimeString()}`}</p>
       <Card className={classes.root}>
         <CardContent>
           <Typography
