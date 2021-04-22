@@ -1,23 +1,24 @@
 import { useState, useEffect, useRef } from "react";
 
 import { connect } from "react-redux";
-import { incrementOrderAction } from "../redux/actions";
-import { deleteOrderAction } from "../redux/actions";
+import { incrementOrderAction, deleteOrderAction } from "../redux/actions";
 
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Paper from "@material-ui/core/Paper";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-
-import "../../src/App.css";
+import {
+  makeStyles,
+  TextField,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@material-ui/core";
 
 import { Iclases } from "../interface/interface";
+
+import "../../src/App.css";
 
 const ViewOrder = (props) => {
   const { data } = props;

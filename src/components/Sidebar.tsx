@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 import _ from "lodash";
 
@@ -10,34 +9,42 @@ import { logOut } from "../redux/actions";
 
 import clsx from "clsx";
 
-import { makeStyles, useTheme, Theme } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import List from "@material-ui/core/List";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
+import {
+  makeStyles,
+  useTheme,
+  Theme,
+  Drawer,
+  AppBar,
+  Toolbar,
+  CssBaseline,
+  List,
+  IconButton,
+  ListItem,
+  ListItemText,
+  Accordion,
+  AccordionSummary,
+  Typography,
+  Avatar,
+  Button,
+  ThemeProvider,
+  createMuiTheme,
+} from "@material-ui/core";
+
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import MenuIcon from "@material-ui/icons/Menu";
+
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import Typography from "@material-ui/core/Typography";
 import Brightness5Icon from "@material-ui/icons/Brightness3";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
 
-import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import { orange } from "@material-ui/core/colors";
-import { lightBlue } from "@material-ui/core/colors";
-import { deepOrange } from "@material-ui/core/colors";
-import { deepPurple } from "@material-ui/core/colors";
+import {
+  orange,
+  lightBlue,
+  deepOrange,
+  deepPurple,
+} from "@material-ui/core/colors";
 
-import { Iitem } from "../interface/interface";
-import { IpersistentDrawerRight } from "../interface/interface";
+import { IpersistentDrawerRight, Iitem } from "../interface/interface";
 
 const drawerWidth = 240;
 

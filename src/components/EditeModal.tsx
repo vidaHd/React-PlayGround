@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react";
 import _ from "lodash";
 
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Fade from "@material-ui/core/Fade";
-import Modal from "@material-ui/core/Modal";
-
-import "../../src/App.css";
+import { makeStyles, TextField, Fade, Modal } from "@material-ui/core";
 
 import { Iclases } from "../interface/interface";
+
+import "../../src/App.css";
 
 export default function EditModalFunction(props) {
   const classes: Iclases = useStyles();
