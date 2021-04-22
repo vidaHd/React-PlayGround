@@ -237,7 +237,6 @@ export const View = (props): JSX.Element => {
     setSearchValue(e);
     const arrSerach = formData.filter((x) => x.name.toLowerCase() === e);
     setFormDataSearchValue(arrSerach);
-    console.log(arrSerach);
   };
 
   return (
