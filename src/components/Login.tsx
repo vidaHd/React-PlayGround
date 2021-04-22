@@ -5,15 +5,18 @@ import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { loginUser } from "../redux/actions";
 
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
+import {
+  makeStyles,
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+  Typography,
+  TextField,
+  Checkbox,
+  FormControlLabel,
+} from "@material-ui/core";
+import { DateTimePickerComponent } from "@syncfusion/ej2-react-calendars";
 
 export const Login = (props): JSX.Element => {
   const classes = useStyles();
@@ -109,11 +112,15 @@ export const Login = (props): JSX.Element => {
     const value = e.target.value;
     setRepetPassword(value);
   };
+  const now: Date = new Date();
 
   return (
     <>
       <p>Date: {`${dateTime.toLocaleDateString()}`}</p>
       <p>Time: {`${dateTime.toLocaleTimeString()}`}</p>
+      <p>تاریخ: {`${dateTime.toLocaleDateString("fa-IR")}`}</p>
+      <p>زمان:{`${dateTime.toLocaleTimeString("fa")}`} </p>
+
       <Card className={classes.root}>
         <CardContent>
           <Typography

@@ -36,10 +36,11 @@
     transform: rotate(360deg);
   }
 }
-.MuiTableCell-alignRight{
+.MuiTableCell-alignRight {
   text-align: center !important;
 }
-.makeStyles-paper-3{
+.makeStyles-paper-3 {
   display: flex !important;
   flex-direction: column !important;
 }
+@import url("https://cdn.syncfusion.com/ej2/material.css");
