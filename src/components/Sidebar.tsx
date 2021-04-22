@@ -161,7 +161,7 @@ function PersistentDrawerRight(props: IpersistentDrawerRight) {
                 className={classes.title}
                 style={{ marginLeft: "4%" }}
               >
-                {data}
+                {/* {data} */}
               </Typography>
             </div>
 
