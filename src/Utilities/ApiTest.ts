@@ -1,11 +1,13 @@
 import axios from "axios";
 
-export const getData = (url) => {
+export const getData = (url): Promise<string> => {
   return new Promise((res, rej) => {
     axios
       .get(url)
       .then((apiResult) => {
-        res(apiResult);
+        setTimeout(() => {
+          res(apiResult.data);
+        }, 2000);
       })
       .catch((err) => {
         rej(err);

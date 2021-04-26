@@ -5,6 +5,8 @@ import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { loginUser } from "../redux/actions";
 
+import { getData } from "../Utilities/ApiTest";
+
 import {
   makeStyles,
   Card,
@@ -98,8 +100,19 @@ export const Login = (props): JSX.Element => {
 
   const checkValid = () => {
     if (validation()) {
-      history.push("/dashboard");
-      props.addUser(username);
+      // history.push("/dashboard");
+      // props.addUser(username);
+      getData("http://localhost:3000/Login")
+        .then((respons: any) => {
+          console.log("res", respons);
+          if (respons.status === "success") {
+            history.push("/dashboard");
+            props.addUser(username);
+          }
+        })
+        .catch((err) => {
+          console.log("err", err);
+        });
     }
   };
 
