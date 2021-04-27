@@ -100,8 +100,6 @@ export const Login = (props): JSX.Element => {
 
   const checkValid = () => {
     if (validation()) {
-      // history.push("/dashboard");
-      // props.addUser(username);
       getData("http://localhost:3000/Login")
         .then((respons: any) => {
           console.log("res", respons);

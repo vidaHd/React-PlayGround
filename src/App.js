@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import NotFound from "./components/NotFound";
 import Order from "./components/Order";
 import Languege from "./components/Languege";
+import tableApi from "./components/TableApi";
 
 import "./App.css";
 
@@ -17,7 +18,7 @@ function App() {
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/product" component={Product} />
         <Route path="/order" component={Order} />
-        <Route path="/Languege" component={Languege} />
+        <Route path="/Languege" component={tableApi} />
 
         <Route path="*" component={NotFound} />
       </Switch>
