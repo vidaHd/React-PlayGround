@@ -1,7 +1,54 @@
 {
-  "posts": [{ "id": 1, "title": "json-server", "author": "typicode" }],
-  "comments": [{ "id": 1, "body": "some comment", "postId": 1 }],
-  "profile": { "name": "typicode" },
   "login": { "status": "success" },
-  "table": [{ "id": 0, "name": "vida", "age": 20 }]
+  "table": [{ "id": 0, "name": "vida", "age": 20 }],
+  "products": [
+    {
+      "id": 1,
+      "name": "    speresso",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG",
+      "price": "1$",
+      "isLiked": false,
+      "comments": [
+        {
+          "id": 1,
+          "username": " jhon  ",
+          "message": "its amazing !",
+          "createDate": "2019,08,21 18:36:20",
+          "profileImage": "https://randomuser.me/api/portraits/men/22.jpg"
+        },
+        {
+          "id": 2,
+          "username": "bill",
+          "message": "so strong",
+          "createDate": "2019,11,01 11:12:04",
+          "profileImage": "https://uifaces.co/our-content/donated/KtCFjlD4.jpg"
+        }
+      ],
+      "hashtags": "awake_sleep_stronge_dark"
+    },
+    {
+      "id": 2,
+      "name": "tork",
+      "image": "https://media3.s-nbcnews.com/j/newscms/2019_33/2203981/171026-better-coffee-boost-se-329p_67dfb6820f7d3898b5486975903c2e51.fit-1240w.jpg",
+      "price": "4$",
+      "isLiked": true,
+      "comments": [
+        {
+          "id": 3,
+          "username": "sara",
+          "message": "perfect with a little milk ^_^",
+          "createDate": "2020,01,02 11:55:54",
+          "profileImage": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjEzMjA0ODk1OF5BMl5BanBnXkFtZTcwMTA4ODM3OQ@@._V1_UY256_CR5,0,172,256_AL_.jpg"
+        },
+        {
+          "id": 4,
+          "username": "mary",
+          "message": "spresso was better :(",
+          "createDate": "2019,07,11 14:01:00",
+          "profileImage": "https://uifaces.co/our-content/donated/3799Ffxy.jpeg"
+        }
+      ],
+      "hashtags": "tasty_beautifull_sweet"
+    }
+  ]
 }
