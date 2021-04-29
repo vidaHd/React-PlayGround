@@ -66,7 +66,7 @@ export default function DataProduct(): JSX.Element {
     <>
       <div className={classes.header}>
         <Typography className={classes.pos}>
-          20% OFF SITEWIDE THROUGH MOTHER'S DAY{" "}
+          20% OFF SITEWIDE THROUGH MOTHER'S DAY
         </Typography>
       </div>
       <div className={classes.underH}>
@@ -146,7 +146,6 @@ export default function DataProduct(): JSX.Element {
           <span className={classes.txtFoot}>
             help center
             <p>
-              {" "}
               Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy Lorem
               Ipsum is simply dummy Lorem Ipsum is simply dummy
             </p>
