@@ -20,6 +20,15 @@ export interface Iclases {
   iconButton?: string;
   form?: string;
   btns?: string;
+  color?: string;
+  title?: string;
+  bullet?: string;
+  pos?: string;
+  cards?: string;
+  main?: string;
+  left?: string;
+  right?: string;
+  img?: string;
 }
 
 export interface Iitem {

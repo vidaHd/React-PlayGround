@@ -44,3 +44,8 @@
   flex-direction: column !important;
 }
 @import url("https://cdn.syncfusion.com/ej2/material.css");
+@media (max-width: 800px) {
+  .right,.left {
+    flex: 100%;
+  }
+}

@@ -84,7 +84,7 @@ export const Login = (props): JSX.Element => {
     } else if (password != repetPassword) {
       alert("پسورد با تکرار پسورد یکی نمیباشد");
       return false;
-    } else if (username != "admin") {
+    } else if (username != "admin" && username != "user") {
       alert("نام کاربری اشتباه است");
       return false;
     } else if (password != 12345) {
@@ -103,9 +103,11 @@ export const Login = (props): JSX.Element => {
       getData("http://localhost:3000/Login")
         .then((respons: any) => {
           console.log("res", respons);
-          if (respons.status === "success") {
+          if (respons.status === "success" && username === "admin") {
             history.push("/dashboard");
             props.addUser(username);
+          } else if (username === "user") {
+            history.push("/DataProduct");
           }
         })
         .catch((err) => {
