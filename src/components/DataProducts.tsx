@@ -23,36 +23,12 @@ import InstagramIcon from "@material-ui/icons/Instagram";
 
 import img from "../coffe.jpg";
 
-interface Iclases {
-  color?: string;
-  root?: string;
-  title?: string;
-  bullet?: string;
-  pos?: string;
-  cards?: string;
-  main?: string;
-  left?: string;
-  right?: string;
-  img?: string;
-  header?: string;
-  btn?: string;
-  posPrice?: string;
-  underH?: string;
-  under?: string;
-  rights?: string;
-  imgCofee?: string;
-  swiper?: string;
-  txt?: string;
-  footer?: string;
-  footerTexr?: string;
-  txtFoot?: string;
-  icon?: string;
-  icons?: string;
-  iconColor?: string;
-}
+import i from "../8.jpg";
+
+import ProductCard from "./ProductCard";
 
 export default function DataProduct(): JSX.Element {
-  const classes: Iclases = useStyles();
+  const classes: any = useStyles();
 
   const [data, setData] = useState<any>();
 
@@ -65,7 +41,7 @@ export default function DataProduct(): JSX.Element {
   return (
     <>
       <div className={classes.header}>
-        <Typography className={classes.pos}>
+        <Typography className={classes.posH}>
           20% OFF SITEWIDE THROUGH MOTHER'S DAY
         </Typography>
       </div>
@@ -82,65 +58,43 @@ export default function DataProduct(): JSX.Element {
         </div>
       </div>
       <div className={classes.imgCofee}>
-        <div style={{ width: "50%" }}>
-          <img src={img} />
+        <div style={{ width: "100%" }} className={classes.imgFixed}>
+          <img src={i} style={{ width: "100%" }} />
         </div>
-        <div style={{ width: "50%", marginRight: "40px" }}>
-          <Typography className={classes.pos}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply
-            dummy text of the printing and typesetting industry. Lorem Ipsum has
-            been the industry's standard dummy text ever since the 1500s, when
-            an unknown printer took a galley of type and scrambled it to make a
-            type specimen book. It has survived not only five centuries, but
-            also the leap into electronic typesetting, remaining essentially
-            unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently
-            with desktop publishing software like Aldus PageMaker including
-            versions of Lorem Ipsum.
+        <div
+          style={{
+            marginRight: "40px",
+          }}
+        >
+          <Typography className={classes.posHT}>Café capsules</Typography>
+        </div>
+        <div>
+          <Typography className={classes.description}>
+            Pas le temps de moudre votre café en grain? Découvrez la gamme de
+            cafés en capsules proposée par Cafés Henri. Savourez un expresso
+            riche en goût, rapide à préparer...
           </Typography>
         </div>
       </div>
+
       <div className={classes.swiper}>
         <div className={classes.main}>
           {data &&
             data.map((x) => (
-              <div className={classes.left}>
-                <Card className={classes.root}>
-                  <CardContent className={classes.cards}>
-                    <img className={classes.img} src={x.image} />
-                    <hr />
-                    <Typography className={classes.pos}>{x.name}</Typography>
-                    <Typography className={classes.posPrice}>
-                      {x.price}
-                    </Typography>
-
-                    {x.isLiked === true ? (
-                      <FavoriteBorderIcon />
-                    ) : (
-                      <FavoriteIcon className={classes.color} />
-                    )}
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" className={classes.btn}>
-                      more details
-                    </Button>
-                  </CardActions>
-                </Card>
-              </div>
+              <ProductCard
+                img={x.image}
+                name={x.name}
+                price={x.price}
+                isLiked={x.isLiked}
+              />
             ))}
         </div>
       </div>
+
       <div className={classes.txt}>
-        <h1 className={classes.pos}>JOIN THE CLUB, SUBSCRIBE TODAY</h1>
+        <h1 className={classes.posHT}>JOIN THE CLUB,</h1>
       </div>
+
       <div className={classes.footer}>
         <div className={classes.footerTexr}>
           <span className={classes.txtFoot}>
@@ -177,6 +131,30 @@ const useStyles = makeStyles({
   color: {
     color: "red",
   },
+  posHT: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "40px",
+    fontFamily: "italy",
+    marginTop: "2%",
+  },
+  imgFixed: {
+    backgroundImage: "url(8.jpg)",
+    backgroundAttachment: "fixed",
+  },
+  description: {
+    width: "50%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    margin: "auto",
+    textAlign: "center",
+    fontFamily: "italy",
+    fontSize: "15px",
+    textShadow: "2px 2px 2px yellow",
+    marginBottom: "3%",
+  },
   root: {
     maxWidth: "100%",
     display: "flex",
@@ -201,8 +179,14 @@ const useStyles = makeStyles({
   },
   pos: {
     marginBottom: 12,
-    color: "#8B4513",
+    color: "#ffff",
     fontFamily: "italy",
+  },
+  posH: {
+    color: "#3f3534",
+    "$:hover": {
+      color: "#ffee18",
+    },
   },
   cards: {
     display: "flex",
@@ -217,25 +201,26 @@ const useStyles = makeStyles({
     maxWidth: "100%",
     flexWrap: "wrap",
     textAlign: "center",
+    borderBottom: "0.2px solid #804224",
   },
   left: {
-    width: "100%",
-    flex: "50%",
+    // width: "100%",
+    // flex: "50%",
   },
   right: {
-    width: "100%",
-    flex: "50%",
+    // width: "100%",
+    // flex: "50%",
   },
   header: {
-    background: "#DEB887",
+    background: "#ffee18",
     height: "20px",
     textAlign: "center",
     justifyContent: "center",
     display: "flex",
     width: "100%",
     fontSize: "12px",
-    position: "fixed",
     padding: "3px",
+    position: "fixed",
   },
   btn: {
     color: "#D2691E",
@@ -247,12 +232,11 @@ const useStyles = makeStyles({
     height: "70px",
     width: "100%",
     display: "flex",
-    background: "#FFF5EE",
-    alignItems: "center",
+    background: "#3f3534",
+    alignItems: "flex-end",
+    color: "#ffff",
     margin: "auto",
     justifyContent: "space-around",
-    boxShadow: "0.2px 0.2px 0.2px 0.2px gray",
-    padding: "5px",
   },
   under: {
     display: "flex",
@@ -267,31 +251,29 @@ const useStyles = makeStyles({
     marginRight: "20px",
   },
   imgCofee: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-aurond",
     width: "100%",
     maxHeight: "800px",
-    overflow: "scroll",
+    objectFit: "cover",
   },
+
   swiper: {
     width: "100%",
-    maxHeight: "400px",
+    // maxHeight: "400px",
   },
   txt: {
-    width: "50%",
+    width: "100%",
     margin: "auto",
-    marginTop: "10%",
+    marginTop: "5%",
     color: "black",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#f8bf50",
   },
   footer: {
     background: "#804224",
     width: "100%",
     height: "280px",
-    marginTop: "5%",
     display: "flex",
     justifyContent: "center",
     flexDirection: "row",

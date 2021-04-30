@@ -20,7 +20,7 @@ function App() {
         <Route path="/product" component={Product} />
         <Route path="/order" component={Order} />
         <Route path="/Languege" component={tableApi} />
-        <Route path="/ViewP" component={DataProduct} />
+        <Route path="/DataProduct" component={DataProduct} />
 
         <Route path="*" component={NotFound} />
       </Switch>
