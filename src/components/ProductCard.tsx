@@ -1,13 +1,4 @@
-import { useState, useEffect } from "react";
-
-import {
-  makeStyles,
-  Card,
-  CardActions,
-  CardContent,
-  Button,
-  Typography,
-} from "@material-ui/core";
+import { makeStyles, Button, Typography } from "@material-ui/core";
 
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -15,7 +6,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 const ProductCard = (props) => {
   const classes: any = useStyles();
 
-  const { img, name, price, isLiked } = props;
+  const { img, name, price, isLiked, id } = props;
 
   return (
     <div className={classes.root}>
@@ -39,7 +30,7 @@ const ProductCard = (props) => {
             width: "100%",
           }}
         >
-          <Button size="small" className={classes.btn}>
+          <Button size="small" className={classes.btn} onClick={id}>
             more details
           </Button>
 
@@ -67,6 +58,9 @@ const useStyles = makeStyles({
     margin: "auto",
     marginTop: "20px",
     marginBottom: "30px",
+    ["@media (max-width:780px)"]: {
+      width: "80%",
+    },
   },
   img: {
     width: "100%",

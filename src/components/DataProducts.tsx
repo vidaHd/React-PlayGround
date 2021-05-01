@@ -1,13 +1,6 @@
 import { useState, useEffect } from "react";
 
-import {
-  makeStyles,
-  Card,
-  CardActions,
-  CardContent,
-  Button,
-  Typography,
-} from "@material-ui/core";
+import { makeStyles, Typography } from "@material-ui/core";
 
 import "../App.css";
 
@@ -21,6 +14,8 @@ import MailIcon from "@material-ui/icons/Mail";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import InstagramIcon from "@material-ui/icons/Instagram";
 
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+
 import img from "../coffe.jpg";
 
 import i from "../8.jpg";
@@ -29,6 +24,8 @@ import ProductCard from "./ProductCard";
 
 export default function DataProduct(): JSX.Element {
   const classes: any = useStyles();
+
+  const matches = useMediaQuery("(min-width:1000px)");
 
   const [data, setData] = useState<any>();
 
@@ -58,14 +55,10 @@ export default function DataProduct(): JSX.Element {
         </div>
       </div>
       <div className={classes.imgCofee}>
-        <div style={{ width: "100%" }} className={classes.imgFixed}>
-          <img src={i} style={{ width: "100%" }} />
+        <div className={classes.imgFixed}>
+          {/* <img src={i} style={{ width: "100%" }} /> */}
         </div>
-        <div
-          style={{
-            marginRight: "40px",
-          }}
-        >
+        <div>
           <Typography className={classes.posHT}>Café capsules</Typography>
         </div>
         <div>
@@ -86,6 +79,7 @@ export default function DataProduct(): JSX.Element {
                 name={x.name}
                 price={x.price}
                 isLiked={x.isLiked}
+                id={x.id}
               />
             ))}
         </div>
@@ -94,7 +88,7 @@ export default function DataProduct(): JSX.Element {
       <div className={classes.txt}>
         <h1 className={classes.posHT}>JOIN THE CLUB,</h1>
       </div>
-
+      {/* <div className={classes.gif}></div> */}
       <div className={classes.footer}>
         <div className={classes.footerTexr}>
           <span className={classes.txtFoot}>
@@ -138,9 +132,20 @@ const useStyles = makeStyles({
     fontSize: "40px",
     fontFamily: "italy",
     marginTop: "2%",
+    ["@media (max-width:780px)"]: {
+      fontSize: "20px",
+    },
   },
   imgFixed: {
-    backgroundImage: "url(8.jpg)",
+    backgroundImage: "url('./images/8.jpg')",
+    backgroundAttachment: "fixed",
+    width: "100%",
+    height: "200px",
+  },
+  gif: {
+    backgroundImage: "url('images/g.gif')",
+    width: "100%",
+    height: "200px",
     backgroundAttachment: "fixed",
   },
   description: {
@@ -152,8 +157,12 @@ const useStyles = makeStyles({
     textAlign: "center",
     fontFamily: "italy",
     fontSize: "15px",
-    textShadow: "2px 2px 2px yellow",
+    textShadow: "0.2px 0.2px 0.2px yellow",
     marginBottom: "3%",
+    ["@media (max-width:780px)"]: {
+      width: "90%",
+      fontSize: "12px",
+    },
   },
   root: {
     maxWidth: "100%",
@@ -168,6 +177,10 @@ const useStyles = makeStyles({
     width: "100%",
     height: "200px",
     objectFit: "cover",
+    "$:hover": {
+      color: "#ffee18",
+      boxShadow: " 0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+    },
   },
   bullet: {
     display: "inline-block",
@@ -202,6 +215,10 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
     textAlign: "center",
     borderBottom: "0.2px solid #804224",
+
+    ["@media (max-width:780px)"]: {
+      display: "block",
+    },
   },
   left: {
     // width: "100%",
@@ -284,6 +301,10 @@ const useStyles = makeStyles({
     width: "80%",
     marginTop: "20px",
     justifyContent: "space-around",
+    ["@media (max-width:780px)"]: {
+      display: "block",
+      marginTop: "0px",
+    },
   },
   txtFoot: {
     width: "200px",
@@ -301,6 +322,9 @@ const useStyles = makeStyles({
     width: "15%",
     cursor: "pointer",
     justifyContent: "space-between",
+    ["@media (max-width:780px)"]: {
+      width: "75%",
+    },
   },
   iconColor: {
     color: "#ffff",
