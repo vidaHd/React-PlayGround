@@ -20,7 +20,7 @@ import {
 } from "@material-ui/core";
 
 export const Login = (props): JSX.Element => {
-  const classes = useStyles();
+  const classes: any = useStyles();
 
   const [username, setUserName] = useState<string>("");
   const [password, setPassword] = useState<number>();
@@ -128,64 +128,63 @@ export const Login = (props): JSX.Element => {
 
   return (
     <>
-      <p>Date: {`${dateTime.toLocaleDateString()}`}</p>
-      <p>Time: {`${dateTime.toLocaleTimeString()}`}</p>
-      <p>تاریخ: {`${dateTime.toLocaleDateString("fa-IR")}`}</p>
-      <p>زمان: {`${dateTime.toLocaleTimeString("fa")}`} </p>
-
-      <Card className={classes.root}>
-        <CardContent>
-          <Typography
-            className={classes.title}
-            color="textSecondary"
-            gutterBottom
-          >
-            hellow user!
-          </Typography>
-          <form className={classes.inputStyle} autoComplete="off">
-            <TextField
-              className={classes.textInput}
-              label="UserName"
-              value={username}
-              onChange={(e) => setUserName(e.target.value)}
-              onKeyDown={FocusName}
-              inputRef={focusName}
+      <div className={classes.bg}>
+        <p>{`${dateTime.toLocaleDateString("fa-IR")}`}</p>
+        <p>{`${dateTime.toLocaleTimeString("fa")}`} </p>
+        <Typography
+          className={classes.title}
+          color="textSecondary"
+          gutterBottom
+        >
+          hellow user!
+        </Typography>
+        <Card className={classes.root}>
+          <CardContent>
+            <form className={classes.inputStyle} autoComplete="off">
+              <TextField
+                className={classes.textInput}
+                label="UserName"
+                value={username}
+                onChange={(e) => setUserName(e.target.value)}
+                onKeyDown={FocusName}
+                inputRef={focusName}
+              />
+              <TextField
+                className={classes.textInput}
+                label="Password"
+                value={password}
+                onChange={handleChangePassword}
+                inputRef={focusPassWord}
+                onKeyDown={FocusPassword}
+              />
+              <TextField
+                className={classes.textInput}
+                label="repeat the password"
+                value={repetPassword}
+                onChange={handleChangeRepetPassword}
+                inputRef={focusRepetPassWord}
+                onKeyDown={FocusRepetPassword}
+              />
+            </form>
+            <FormControlLabel
+              control={<Checkbox name="checkedB" color="primary" />}
+              label="remember me"
             />
-            <TextField
-              className={classes.textInput}
-              label="Password"
-              value={password}
-              onChange={handleChangePassword}
-              inputRef={focusPassWord}
-              onKeyDown={FocusPassword}
-            />
-            <TextField
-              className={classes.textInput}
-              label="repeat the password"
-              value={repetPassword}
-              onChange={handleChangeRepetPassword}
-              inputRef={focusRepetPassWord}
-              onKeyDown={FocusRepetPassword}
-            />
-          </form>
-          <FormControlLabel
-            control={<Checkbox name="checkedB" color="primary" />}
-            label="remember me"
-          />
-        </CardContent>
-        <CardActions>
-          <Button
-            className={classes.button}
-            variant="contained"
-            color="primary"
-            disableElevation
-            onClick={checkValid}
-            innerRef={focusBtn}
-          >
-            login
-          </Button>
-        </CardActions>
-      </Card>
+          </CardContent>
+          <CardActions>
+            <Button
+              className={classes.button}
+              variant="contained"
+              color="primary"
+              disableElevation
+              onClick={checkValid}
+              innerRef={focusBtn}
+            >
+              login
+            </Button>
+          </CardActions>
+        </Card>
+      </div>
     </>
   );
 };
@@ -202,15 +201,31 @@ const mapDispatchToProps = (disPatch) => {
 export default connect(null, mapDispatchToProps)(Login);
 
 const useStyles = makeStyles({
+  bg: {
+    height: "900px",
+    marginTop: "-1%",
+    overflowY: "hidden",
+    background:
+      "linear-gradient(90deg, rgba(2,0,36,0.5410539215686274) 0%, rgba(0,212,255,0) 100%)",
+  },
   root: {
-    width: 600,
+    width: "40%",
     height: 500,
     top: "20%",
-    position: "absolute",
+    margin: "auto",
     right: "32%",
+
+    ["@media (max-width:600px)"]: {
+      width: "80%",
+    },
   },
   title: {
-    fontSize: 14,
+    fontSize: 25,
+    display: "flex",
+    textAlign: "center",
+    margin: "auto",
+    justifyContent: "center",
+    marginBottom: "20px",
   },
   pos: {
     marginBottom: 12,
@@ -220,9 +235,7 @@ const useStyles = makeStyles({
     flexDirection: "column",
   },
   button: {
-    position: "absolute",
-    right: "44%",
-    bottom: "40px",
+    margin: "auto",
   },
   textInput: {
     margin: "20px",

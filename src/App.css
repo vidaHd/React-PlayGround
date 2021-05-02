@@ -45,7 +45,11 @@
 }
 @import url("https://cdn.syncfusion.com/ej2/material.css");
 @media (max-width: 800px) {
-  .right,.left {
+  .right,
+  .left {
     flex: 100%;
   }
+}
+body {
+  background-color: "#00FFFF" !important;
 }
