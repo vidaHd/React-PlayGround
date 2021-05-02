@@ -17,6 +17,10 @@ import i from "../images/g.gif";
 
 import ProductCard from "./ProductCard";
 
+import { Link } from "react-router-dom";
+
+import PersonIcon from "@material-ui/icons/Person";
+
 export default function DataProduct(): JSX.Element {
   const classes: any = useStyles();
 
@@ -38,15 +42,14 @@ export default function DataProduct(): JSX.Element {
         </Typography>
       </div>
       <div className={classes.underH}>
-        <div className={classes.under}>
-          <Typography className={classes.pos}>home</Typography>
-          <Typography className={classes.pos}>contact</Typography>
-
-          <Typography className={classes.pos}>call</Typography>
-          <Typography className={classes.pos}>addres</Typography>
-        </div>
+        <div className={classes.under}></div>
         <div className={classes.rights}>
-          <Typography className={classes.pos}>My coffee</Typography>
+          <Typography className={classes.pos}>
+            <Link to="/" style={{ textDecoration: "none", color: "#ffff" }}>
+              Log Out
+              <PersonIcon style={{ marginLeft: "5px" }} />
+            </Link>
+          </Typography>
         </div>
       </div>
       <div className={classes.imgCofee}>
