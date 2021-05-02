@@ -4,9 +4,6 @@ import { makeStyles, Typography } from "@material-ui/core";
 
 import "../App.css";
 
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-
 import { getData } from "../Utilities/ApiTest";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
@@ -15,8 +12,6 @@ import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import InstagramIcon from "@material-ui/icons/Instagram";
 
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-
-import img from "../coffe.jpg";
 
 import i from "../images/g.gif";
 
@@ -43,21 +38,19 @@ export default function DataProduct(): JSX.Element {
         </Typography>
       </div>
       <div className={classes.underH}>
-        <div style={{ width: "20%" }} className={classes.under}>
+        <div className={classes.under}>
           <Typography className={classes.pos}>home</Typography>
           <Typography className={classes.pos}>contact</Typography>
 
           <Typography className={classes.pos}>call</Typography>
           <Typography className={classes.pos}>addres</Typography>
         </div>
-        <div style={{ width: "80%" }} className={classes.rights}>
+        <div className={classes.rights}>
           <Typography className={classes.pos}>My coffee</Typography>
         </div>
       </div>
       <div className={classes.imgCofee}>
-        <div className={classes.imgFixed}>
-          {/* <img src={i} style={{ width: "100%" }} /> */}
-        </div>
+        <div className={classes.imgFixed}></div>
         <div>
           <Typography className={classes.posHT}>Café capsules</Typography>
         </div>
@@ -88,17 +81,7 @@ export default function DataProduct(): JSX.Element {
       <div className={classes.txt}>
         <h1 className={classes.posHT}>JOIN THE CLUB,</h1>
       </div>
-      <div
-        className={classes.gif}
-        style={{
-          backgroundImage: `url(${i})`,
-          height: "300px",
-          width: "100%",
-          backgroundAttachment: "fixed",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-        }}
-      ></div>
+      <div className={classes.gif}></div>
       <div className={classes.footer}>
         <div className={classes.footerTexr}>
           <span className={classes.txtFoot}>
@@ -132,9 +115,6 @@ export default function DataProduct(): JSX.Element {
 }
 
 const useStyles = makeStyles({
-  color: {
-    color: "red",
-  },
   posHT: {
     display: "flex",
     alignItems: "center",
@@ -153,10 +133,12 @@ const useStyles = makeStyles({
     height: "200px",
   },
   gif: {
-    backgroundImage: "url('images/g.gif')",
+    backgroundImage: `url(${i})`,
+    height: "300px",
     width: "100%",
-    height: "200px",
     backgroundAttachment: "fixed",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
   },
   description: {
     width: "50%",
@@ -173,15 +155,6 @@ const useStyles = makeStyles({
       width: "90%",
       fontSize: "12px",
     },
-  },
-  root: {
-    maxWidth: "100%",
-    display: "flex",
-    flexDirection: "column",
-    width: "40%",
-    margin: "auto",
-    marginTop: "20px",
-    marginBottom: "30px",
   },
   img: {
     width: "100%",
@@ -211,13 +184,6 @@ const useStyles = makeStyles({
       color: "#ffee18",
     },
   },
-  cards: {
-    display: "flex",
-    alignItems: "end",
-    justifyContent: "center",
-    margin: "auto",
-    flexDirection: "column",
-  },
   main: {
     display: "flex",
     justifyContent: "space-around",
@@ -225,18 +191,9 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
     textAlign: "center",
     borderBottom: "0.2px solid #804224",
-
     ["@media (max-width:780px)"]: {
       display: "block",
     },
-  },
-  left: {
-    // width: "100%",
-    // flex: "50%",
-  },
-  right: {
-    // width: "100%",
-    // flex: "50%",
   },
   header: {
     background: "#ffee18",
@@ -248,9 +205,6 @@ const useStyles = makeStyles({
     fontSize: "12px",
     padding: "3px",
     position: "fixed",
-  },
-  btn: {
-    color: "#D2691E",
   },
   posPrice: {
     color: "#D2691E",
@@ -270,22 +224,22 @@ const useStyles = makeStyles({
     alignItems: "end",
     justifyContent: "space-around",
     fontFamily: "italy",
+    width: "20%",
   },
   rights: {
     display: "flex",
     alignItems: "start",
     justifyContent: "flex-end",
     marginRight: "20px",
+    width: "80%",
   },
   imgCofee: {
     width: "100%",
     maxHeight: "800px",
     objectFit: "cover",
   },
-
   swiper: {
     width: "100%",
-    // maxHeight: "400px",
   },
   txt: {
     width: "100%",
