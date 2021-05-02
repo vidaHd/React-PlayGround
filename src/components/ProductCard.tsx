@@ -66,6 +66,12 @@ const useStyles = makeStyles({
     width: "100%",
     height: "200px",
     objectFit: "cover",
+    borderRadius: "5px",
+    // "&:hover": {
+    //   transform: " scale(1.05)",
+    //   opacity: " 0.8",
+    //   boxShadow: "20px 20px 40px 0px rgba(0,0,0,0.5)",
+    // },
   },
   bullet: {
     display: "inline-block",
@@ -87,6 +93,11 @@ const useStyles = makeStyles({
     margin: "auto",
     flexDirection: "column",
     width: "100%",
+    "&:hover": {
+      transform: " scale(1.05)",
+      opacity: " 0.9",
+      boxShadow: "20px 20px 40px 0px rgba(0,0,0,0.5)",
+    },
   },
   main: {
     display: "flex",

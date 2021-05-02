@@ -18,7 +18,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import img from "../coffe.jpg";
 
-import i from "../8.jpg";
+import i from "../images/g.gif";
 
 import ProductCard from "./ProductCard";
 
@@ -88,7 +88,17 @@ export default function DataProduct(): JSX.Element {
       <div className={classes.txt}>
         <h1 className={classes.posHT}>JOIN THE CLUB,</h1>
       </div>
-      {/* <div className={classes.gif}></div> */}
+      <div
+        className={classes.gif}
+        style={{
+          backgroundImage: `url(${i})`,
+          height: "300px",
+          width: "100%",
+          backgroundAttachment: "fixed",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+      ></div>
       <div className={classes.footer}>
         <div className={classes.footerTexr}>
           <span className={classes.txtFoot}>
