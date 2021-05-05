@@ -50,7 +50,9 @@ const CommentProduct = () => {
             data?.comments.map((a) => (
               <div className={classes.comment}>
                 <p className={classes.pComment}>{a.message}</p>
-                <p className={classes.pComment}>{a.createDate}</p>
+                <p className={classes.pComment}>{a.createDate.slice(0, 11)}</p>
+                <p className={classes.pComment}>{a.createDate.slice(12)}</p>
+
                 <p className={classes.pComment}>{a.username}</p>
                 <img className={classes.imgComment} src={a?.profileImage} />
               </div>
