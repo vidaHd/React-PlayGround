@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-
 import { useEffect, useState } from "react";
 import { getData } from "../Utilities/ApiTest";
 import { makeStyles } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 
 interface Idata {
   name;
@@ -44,8 +44,8 @@ const CommentProduct = () => {
             </h1>
           </div>
         </div>
-
         <div className={classes.commentMain}>
+          <AddIcon className={classes.icon} />
           {data?.comments &&
             data?.comments.map((a) => (
               <div className={classes.comment}>
@@ -149,6 +149,7 @@ const useStyles = makeStyles({
     textDecoration: "none",
   },
   IMG: {
+    borderRadius: "100%",
     width: "600px",
     ["@media (max-width:1100px)"]: {
       width: "400px",
@@ -187,7 +188,16 @@ const useStyles = makeStyles({
       width: "70%",
     },
   },
-
+  icon: {
+    color: "#F4A460",
+    fontSize: "50px",
+    cursor: "pointer",
+    width: "100%",
+    borderBottom: "0.2px solid #F4A460",
+    ["@media (max-width:600px)"]: {
+      fontSize: "40px",
+    },
+  },
   pComment: {
     width: "100%",
     color: "#ffff",
