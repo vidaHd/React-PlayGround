@@ -8,7 +8,7 @@ import Order from "./components/Order";
 import Languege from "./components/Languege";
 import tableApi from "./components/TableApi";
 import DataProduct from "./components/DataProducts";
-
+import CommentProduct from "./components/CommentProduct";
 import "./App.css";
 
 function App() {
@@ -21,6 +21,7 @@ function App() {
         <Route path="/order" component={Order} />
         <Route path="/Languege" component={tableApi} />
         <Route path="/DataProduct" component={DataProduct} />
+        <Route path="/ShowProduct" component={CommentProduct} />
 
         <Route path="*" component={NotFound} />
       </Switch>

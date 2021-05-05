@@ -129,8 +129,12 @@ export const Login = (props): JSX.Element => {
   return (
     <>
       <div className={classes.bg}>
-        <p>{`${dateTime.toLocaleDateString("fa-IR")}`}</p>
-        <p>{`${dateTime.toLocaleTimeString("fa")}`} </p>
+        <p style={{ fontSize: "25px" }}>{`${dateTime.toLocaleDateString(
+          "fa-IR"
+        )}`}</p>
+        <p style={{ fontSize: "25px" }}>
+          {`${dateTime.toLocaleTimeString("fa")}`}{" "}
+        </p>
         <Typography
           className={classes.title}
           color="textSecondary"

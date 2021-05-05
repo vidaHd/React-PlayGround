@@ -1,4 +1,5 @@
 import { makeStyles, Button, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -12,26 +13,17 @@ const ProductCard = (props) => {
     <div className={classes.root}>
       <div className={classes.cards}>
         <img className={classes.img} src={img} />
-        <hr />
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            width: "100%",
-          }}
-        >
+
+        <div className={classes.CardStyle}>
           <Typography className={classes.pos}>{name}</Typography>
           <Typography className={classes.posPrice}>{price}</Typography>
         </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            width: "100%",
-          }}
-        >
-          <Button size="small" className={classes.btn} onClick={id}>
-            more details
+
+        <div className={classes.CardStyle}>
+          <Button size="small" className={classes.btn}>
+            <Link className={classes.btn} to={`/ShowProduct/${id}`}>
+              more details
+            </Link>
           </Button>
 
           {isLiked === true ? (
@@ -62,8 +54,13 @@ const useStyles = makeStyles({
       width: "80%",
     },
   },
-  img: {
+  CardStyle: {
+    display: "flex",
+    justifyContent: "space-between",
     width: "100%",
+  },
+  img: {
+    margin: "auto",
     height: "200px",
     objectFit: "cover",
     borderRadius: "5px",
@@ -80,7 +77,6 @@ const useStyles = makeStyles({
     justifyContent: "center",
     margin: "auto",
     flexDirection: "column",
-    width: "100%",
     "&:hover": {
       transform: " scale(1.05)",
       opacity: " 0.9",
@@ -90,6 +86,7 @@ const useStyles = makeStyles({
 
   btn: {
     color: "#D2691E",
+    textDecoration: "none",
   },
   posPrice: {
     color: "#D2691E",
