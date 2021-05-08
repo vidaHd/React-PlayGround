@@ -5,7 +5,9 @@ export const getData = (url): any => {
     axios
       .get(url)
       .then((apiResult) => {
-        res(apiResult.data);
+        setTimeout(() => {
+          res(apiResult.data);
+        }, 2000);
       })
       .catch((err) => {
         rej(err);

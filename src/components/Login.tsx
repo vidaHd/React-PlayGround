@@ -19,13 +19,16 @@ import {
   FormControlLabel,
 } from "@material-ui/core";
 
+import CircularProgress from "@material-ui/core/CircularProgress";
+
 export const Login = (props): JSX.Element => {
   const classes: any = useStyles();
 
   const [username, setUserName] = useState<string>("");
   const [password, setPassword] = useState<number>();
   const [repetPassword, setRepetPassword] = useState<number>();
-
+  const [loading, setLoading] = useState(false);
+  
   const [dateTime, setDateTime] = useState(new Date());
 
   const history = useHistory();
@@ -100,15 +103,16 @@ export const Login = (props): JSX.Element => {
 
   const checkValid = () => {
     if (validation()) {
+      setLoading(true);
       getData("http://localhost:3000/Login")
         .then((respons: any) => {
-          console.log("res", respons);
           if (respons.status === "success" && username === "admin") {
             history.push("/dashboard");
             props.addUser(username);
           } else if (username === "user") {
             history.push("/DataProduct");
           }
+          setLoading(false);
         })
         .catch((err) => {
           console.log("err", err);
@@ -176,16 +180,20 @@ export const Login = (props): JSX.Element => {
             />
           </CardContent>
           <CardActions>
-            <Button
-              className={classes.button}
-              variant="contained"
-              color="primary"
-              disableElevation
-              onClick={checkValid}
-              innerRef={focusBtn}
-            >
-              login
-            </Button>
+            {loading ? (
+              <CircularProgress className={classes.button} />
+            ) : (
+              <Button
+                className={classes.button}
+                variant="contained"
+                color="primary"
+                disableElevation
+                onClick={checkValid}
+                innerRef={focusBtn}
+              >
+                login
+              </Button>
+            )}
           </CardActions>
         </Card>
       </div>
@@ -206,7 +214,7 @@ export default connect(null, mapDispatchToProps)(Login);
 
 const useStyles = makeStyles({
   bg: {
-    height: "900px",
+    height: "970px",
     marginTop: "-1%",
     overflowY: "hidden",
     background:

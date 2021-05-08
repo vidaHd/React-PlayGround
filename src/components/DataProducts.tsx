@@ -19,7 +19,10 @@ import ProductCard from "./ProductCard";
 
 import { Link } from "react-router-dom";
 
+import AOS from "aos";
+
 import PersonIcon from "@material-ui/icons/Person";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 export default function DataProduct(): JSX.Element {
   const classes: any = useStyles();
@@ -28,11 +31,18 @@ export default function DataProduct(): JSX.Element {
 
   const [data, setData] = useState<any>();
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
+    setLoading(true);
+
     getData("http://localhost:3000/products").then((res) => {
       setData(res);
+      setLoading(false);
     });
   }, []);
+
+  AOS.init();
 
   return (
     <>
@@ -68,7 +78,10 @@ export default function DataProduct(): JSX.Element {
 
       <div className={classes.swiper}>
         <div className={classes.main}>
-          {data &&
+          {loading ? (
+            <CircularProgress />
+          ) : (
+            data &&
             data.map((x) => (
               <ProductCard
                 img={x.image}
@@ -77,7 +90,8 @@ export default function DataProduct(): JSX.Element {
                 isLiked={x.isLiked}
                 id={x.id}
               />
-            ))}
+            ))
+          )}
         </div>
       </div>
 

@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { getData } from "../Utilities/ApiTest";
 import { makeStyles } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
+import AOS from "aos";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 interface Idata {
   name;
@@ -16,67 +18,107 @@ const CommentProduct = () => {
 
   const [data, setData] = useState<Idata>();
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const pathname = window.location.pathname;
     const id = pathname.slice(13, pathname.length);
     const url = ` http://localhost:3000/products/${id}`;
 
     getData(url).then((res) => {
+      setLoading(true);
       setData(res);
+      setLoading(false);
     });
   }, []);
-
+  AOS.init();
   return (
     <>
-      <div className={classes.main}>
-        <span className={classes.span}>
-          choco
-          <p className={classes.p}>Licus</p>
-        </span>
-        <div className={classes.dir}>
-          <div className={classes.img}>
-            <img src={data?.image} className={classes.IMG} />
+      {loading ? (
+        <div className={classes.loading}>
+          <img src="https://loading.io/asset/478227" />
+          <CircularProgress />
+        </div>
+      ) : (
+        <div className={classes.main}>
+          <span className={classes.span}>
+            choco
+            <p className={classes.p}>Licus</p>
+          </span>
+          <div className={classes.dir}>
+            <div className={classes.img}>
+              <img src={data?.image} className={classes.IMG} />
 
-            <h1 className={classes.textH}>
-              {data && data.name && data.name}
-              <br />
-              {data && data.price && data.price}
-            </h1>
+              <h1 className={classes.textH}>
+                {data && data.name && data.name}
+                <br />
+                {data && data.price && data.price}
+              </h1>
+            </div>
           </div>
-        </div>
-        <div className={classes.commentMain}>
-          <AddIcon className={classes.icon} />
-          {data?.comments &&
-            data?.comments.map((a) => (
-              <div className={classes.comment}>
-                <p className={classes.pComment}>{a.message}</p>
-                <p className={classes.pComment}>{a.createDate.slice(0, 11)}</p>
-                <p className={classes.pComment}>{a.createDate.slice(12)}</p>
+          <div className={classes.commentMain}>
+            <AddIcon className={classes.icon} />
+            {data?.comments &&
+              data?.comments.map((a) => (
+                <div className={classes.comment}>
+                  <p className={classes.pCommentM}>{a.message}</p>
+                  <p className={classes.pComment}>
+                    {a.createDate.slice(0, 11)}
+                  </p>
 
-                <p className={classes.pComment}>{a.username}</p>
-                <img className={classes.imgComment} src={a?.profileImage} />
-              </div>
-            ))}
-        </div>
-        {/* <p className={classes.txt}>with a cup full of Happiness!</p> */}
-        <p className={classes.Back}>
-          <Link className={classes.Link} to="/DataProduct">
-            back now!
-          </Link>
+                  <p className={classes.pComment}>{a.createDate.slice(12)}</p>
 
-          <hr />
-        </p>
-      </div>
+                  <p className={classes.pComment}>{a.username}</p>
+                  <img className={classes.imgComment} src={a?.profileImage} />
+                </div>
+              ))}
+          </div>
+          <p className={classes.Back}>
+            <Link className={classes.Link} to="/DataProduct">
+              back now!
+            </Link>
+
+            <hr />
+          </p>
+        </div>
+      )}
     </>
   );
 };
 export default CommentProduct;
 
 const useStyles = makeStyles({
+  loading: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: "450px",
+    textAlign: "center",
+  },
   main: {
-    background: "black",
+    background: "#D2691E ",
     width: "100%",
     overflow: "hidden",
+    height: "1000px",
+  },
+  commentMain: {
+    background: "#8B4513",
+    borderRadius: "5px",
+    width: "90%",
+    height: "300px",
+    margin: "auto",
+    marginBottom: "45px",
+    overflowY: "scroll",
+    boxShadow: " 1px -3px 13px saddlebrown",
+    ["@media (max-width:1100px)"]: {
+      width: "70%",
+    },
+    ["@media (max-width:800px)"]: {
+      width: "90%",
+    },
+    ["@media (max-width:600px)"]: {
+      width: "70%",
+    },
   },
   span: {
     color: "#ffff",
@@ -172,24 +214,7 @@ const useStyles = makeStyles({
       flexDirection: "column-reverse",
     },
   },
-  commentMain: {
-    background: "black",
-    width: "90%",
-    height: "300px",
-    margin: "auto",
-    marginBottom: "45px",
-    overflowY: "scroll",
-    boxShadow: "-2px 3px 10px #F4A460",
-    ["@media (max-width:1100px)"]: {
-      width: "70%",
-    },
-    ["@media (max-width:800px)"]: {
-      width: "90%",
-    },
-    ["@media (max-width:600px)"]: {
-      width: "70%",
-    },
-  },
+
   icon: {
     color: "#F4A460",
     fontSize: "50px",
@@ -201,10 +226,18 @@ const useStyles = makeStyles({
     },
   },
   pComment: {
+    width: "30%",
+    color: "#ffff",
+    display: "flex",
+    justifyContent: "center",
+  },
+  pCommentM: {
     width: "100%",
     color: "#ffff",
     display: "flex",
     justifyContent: "center",
+    direction: "ltr",
+    textAlign: "center",
   },
   imgComment: {
     width: "50px",
