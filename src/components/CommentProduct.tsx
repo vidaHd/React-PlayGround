@@ -5,12 +5,15 @@ import { makeStyles } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import AOS from "aos";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Box from "@material-ui/core/Box";
+import Rating from "@material-ui/lab/Rating";
 
 interface Idata {
   name;
   price;
   image;
   id;
+  rate;
   comments;
 }
 const CommentProduct = () => {
@@ -55,6 +58,18 @@ const CommentProduct = () => {
                 {data && data.price && data.price}
               </h1>
             </div>
+
+            <Box
+              component="fieldset"
+              mb={5}
+              borderColor="transparent"
+              style={{ direction: "ltr", marginLeft: "10%" }}
+            >
+              <Rating
+                name="simple-controlled"
+                value={data && data.rate && data.rate}
+              />
+            </Box>
           </div>
           <div className={classes.commentMain}>
             <AddIcon className={classes.icon} />

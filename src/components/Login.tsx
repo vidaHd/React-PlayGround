@@ -28,7 +28,7 @@ export const Login = (props): JSX.Element => {
   const [password, setPassword] = useState<number>();
   const [repetPassword, setRepetPassword] = useState<number>();
   const [loading, setLoading] = useState(false);
-  
+
   const [dateTime, setDateTime] = useState(new Date());
 
   const history = useHistory();

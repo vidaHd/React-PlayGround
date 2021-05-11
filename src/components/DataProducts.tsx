@@ -89,6 +89,7 @@ export default function DataProduct(): JSX.Element {
                 price={x.price}
                 isLiked={x.isLiked}
                 id={x.id}
+                rate={x.rate}
               />
             ))
           )}
