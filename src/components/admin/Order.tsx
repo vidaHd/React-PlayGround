@@ -1,7 +1,7 @@
 import PersistentDrawerRight from "./Sidebar";
 import ViewOrder from "./ViewOrders";
 
-import { Iitem } from "../interface/interface";
+import { Iitem } from "../../interface/interface";
 
 const Dashboard = () => {
   const items: Iitem[] = [

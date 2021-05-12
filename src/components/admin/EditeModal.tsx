@@ -3,9 +3,7 @@ import _ from "lodash";
 
 import { makeStyles, TextField, Fade, Modal } from "@material-ui/core";
 
-import { Iclases } from "../interface/interface";
-
-import "../../src/App.css";
+import { Iclases } from "../../interface/interface";
 
 export default function EditModalFunction(props) {
   const classes: Iclases = useStyles();

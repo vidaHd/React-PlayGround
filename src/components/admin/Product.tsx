@@ -1,7 +1,7 @@
 import { View } from "./ViewProducts";
 import PersistentDrawerRight from "./Sidebar";
 
-import { Iproduct } from "../interface/interface";
+import { Iproduct } from "../../interface/interface";
 
 const Product = () => {
   const items: Iproduct[] = [

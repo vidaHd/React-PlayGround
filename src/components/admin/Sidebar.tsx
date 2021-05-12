@@ -5,7 +5,7 @@ import { useHistory, Link } from "react-router-dom";
 import _ from "lodash";
 
 import { connect } from "react-redux";
-import { logOut } from "../redux/actions";
+import { logOut } from "../../redux/actions";
 
 import clsx from "clsx";
 
@@ -44,7 +44,7 @@ import {
   deepPurple,
 } from "@material-ui/core/colors";
 
-import { IpersistentDrawerRight, Iitem } from "../interface/interface";
+import { IpersistentDrawerRight, Iitem } from "../../interface/interface";
 
 const drawerWidth = 240;
 

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
 import { connect } from "react-redux";
-import { incrementOrderAction, deleteOrderAction } from "../redux/actions";
+import { incrementOrderAction, deleteOrderAction } from "../../redux/actions";
 
 import Button from "@material-ui/core/Button";
 import {
@@ -16,9 +16,7 @@ import {
   TableRow,
 } from "@material-ui/core";
 
-import { Iclases } from "../interface/interface";
-
-import "../../src/App.css";
+import { Iclases } from "../../interface/interface";
 
 const ViewOrder = (props) => {
   const { data } = props;

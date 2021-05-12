@@ -1,33 +1,23 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
+import { getData } from "../../Utilities/ApiTest";
 
 import { makeStyles, Typography } from "@material-ui/core";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-import "../App.css";
-
-import { getData } from "../Utilities/ApiTest";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import MailIcon from "@material-ui/icons/Mail";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import InstagramIcon from "@material-ui/icons/Instagram";
-
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-
-import i from "../images/g.gif";
-
-import ProductCard from "./ProductCard";
-
-import { Link } from "react-router-dom";
-
-import AOS from "aos";
-
 import PersonIcon from "@material-ui/icons/Person";
-import CircularProgress from "@material-ui/core/CircularProgress";
+
+import gif from "../../images/g.gif";
+import ProductCard from "./ProductCard";
 
 export default function DataProduct(): JSX.Element {
   const classes: any = useStyles();
-
-  const matches = useMediaQuery("(min-width:1000px)");
 
   const [data, setData] = useState<any>();
 
@@ -42,22 +32,20 @@ export default function DataProduct(): JSX.Element {
     });
   }, []);
 
-  AOS.init();
-
   return (
     <>
       <div className={classes.header}>
-        <Typography className={classes.posH}>
+        <Typography className={classes.textHeader}>
           20% OFF SITEWIDE THROUGH MOTHER'S DAY
         </Typography>
       </div>
-      <div className={classes.underH}>
+      <div className={classes.headerTow}>
         <div className={classes.under}></div>
-        <div className={classes.rights}>
-          <Typography className={classes.pos}>
-            <Link to="/" style={{ textDecoration: "none", color: "#ffff" }}>
+        <div className={classes.logOut}>
+          <Typography className={classes.typography}>
+            <Link to="/" className={classes.link}>
               Log Out
-              <PersonIcon style={{ marginLeft: "5px" }} />
+              <PersonIcon className={classes.personIcon} />
             </Link>
           </Typography>
         </div>
@@ -81,15 +69,14 @@ export default function DataProduct(): JSX.Element {
           {loading ? (
             <CircularProgress />
           ) : (
-            data &&
-            data.map((x) => (
+            data?.map((data) => (
               <ProductCard
-                img={x.image}
-                name={x.name}
-                price={x.price}
-                isLiked={x.isLiked}
-                id={x.id}
-                rate={x.rate}
+                img={data.image}
+                name={data.name}
+                price={data.price}
+                isLiked={data.isLiked}
+                id={data.id}
+                rate={data.rate}
               />
             ))
           )}
@@ -98,6 +85,9 @@ export default function DataProduct(): JSX.Element {
 
       <div className={classes.txt}>
         <h1 className={classes.posHT}>JOIN THE CLUB,</h1>
+      </div>
+      <div>
+        <h1>Recent Visits</h1>
       </div>
       <div className={classes.gif}></div>
       <div className={classes.footer}>
@@ -144,6 +134,13 @@ const useStyles = makeStyles({
       fontSize: "20px",
     },
   },
+  link: {
+    textDecoration: "none",
+    color: "#ffff",
+  },
+  personIcon: {
+    marginLeft: "5px",
+  },
   imgFixed: {
     backgroundImage: "url('./images/8.jpg')",
     backgroundAttachment: "fixed",
@@ -151,7 +148,7 @@ const useStyles = makeStyles({
     height: "200px",
   },
   gif: {
-    backgroundImage: `url(${i})`,
+    backgroundImage: `url(${gif})`,
     height: "300px",
     width: "100%",
     backgroundAttachment: "fixed",
@@ -191,12 +188,12 @@ const useStyles = makeStyles({
   title: {
     fontSize: 14,
   },
-  pos: {
+  typography: {
     marginBottom: 12,
     color: "#ffff",
     fontFamily: "italy",
   },
-  posH: {
+  textHeader: {
     color: "#3f3534",
     "$:hover": {
       color: "#ffee18",
@@ -227,7 +224,7 @@ const useStyles = makeStyles({
   posPrice: {
     color: "#D2691E",
   },
-  underH: {
+  headerTow: {
     height: "70px",
     width: "100%",
     display: "flex",
@@ -244,7 +241,7 @@ const useStyles = makeStyles({
     fontFamily: "italy",
     width: "20%",
   },
-  rights: {
+  logOut: {
     display: "flex",
     alignItems: "start",
     justifyContent: "flex-end",

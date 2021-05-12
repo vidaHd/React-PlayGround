@@ -10,8 +10,8 @@ import {
   Paper,
   makeStyles,
 } from "@material-ui/core";
-import { Iclases } from "../interface/interface";
-import { getData } from "../Utilities/ApiTest";
+import { Iclases } from "../../interface/interface";
+import { getData } from "../../Utilities/ApiTest";
 
 const tableApi = () => {
   const classes: Iclases = useStyles();

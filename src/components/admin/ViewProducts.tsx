@@ -26,9 +26,7 @@ import EditIcon from "@material-ui/icons/Edit";
 
 import EditModalFunction from "./EditeModal";
 
-import { IrowItem, Iclases } from "../interface/interface";
-
-import "../../src/App.css";
+import { IrowItem, Iclases } from "../../interface/interface";
 
 export const View = (props): JSX.Element => {
   const classes: Iclases = useStyles({ darkMode: true });

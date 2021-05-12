@@ -1,5 +1,5 @@
 import PersistentDrawerRight from "./Sidebar";
-import { Iitem } from "../interface/interface";
+import { Iitem } from "../../interface/interface";
 
 const Dashboard = (props) => {
   const items: Iitem[] = [

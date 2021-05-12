@@ -1,13 +1,11 @@
-import { makeStyles, Button, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
+import { makeStyles, Button, Typography } from "@material-ui/core";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-
-import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
 
-const ProductCard = (props) => {
+const ProductCard = (props): JSX.Element => {
   const classes: any = useStyles();
 
   const { img, name, price, isLiked, id, rate } = props;
@@ -35,14 +33,9 @@ const ProductCard = (props) => {
             <FavoriteIcon className={classes.color} />
           )}
         </div>
-        <Box
-          component="fieldset"
-          mb={5}
-          borderColor="transparent"
-          style={{ margin: "auto" }}
-        >
-          <Rating name="simple-controlled" value={rate} />
-        </Box>
+        <div className={classes.rate}>
+          <Rating value={rate} />
+        </div>
       </div>
     </div>
   );
@@ -101,5 +94,8 @@ const useStyles = makeStyles({
   },
   posPrice: {
     color: "#D2691E",
+  },
+  rate: {
+    margin: "auto",
   },
 });

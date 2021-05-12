@@ -1,27 +1,30 @@
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getData } from "../Utilities/ApiTest";
+
+import { Link } from "react-router-dom";
+import { getData } from "../../Utilities/ApiTest";
+
 import { makeStyles } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
-import AOS from "aos";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
 
+import AOS from "aos";
+
 interface Idata {
-  name;
-  price;
-  image;
-  id;
-  rate;
-  comments;
+  name: string;
+  price: string;
+  image: string;
+  id: number;
+  rate: number;
+  comments: any;
 }
-const CommentProduct = () => {
+
+const CommentProduct = (): JSX.Element => {
   const classes: any = useStyles();
 
   const [data, setData] = useState<Idata>();
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const pathname = window.location.pathname;
@@ -29,12 +32,13 @@ const CommentProduct = () => {
     const url = ` http://localhost:3000/products/${id}`;
 
     getData(url).then((res) => {
-      setLoading(true);
       setData(res);
       setLoading(false);
     });
   }, []);
+
   AOS.init();
+
   return (
     <>
       {loading ? (
@@ -48,51 +52,42 @@ const CommentProduct = () => {
             choco
             <p className={classes.p}>Licus</p>
           </span>
-          <div className={classes.dir}>
+          <div className={classes.boxImage}>
             <div className={classes.img}>
               <img src={data?.image} className={classes.IMG} />
 
-              <h1 className={classes.textH}>
-                {data && data.name && data.name}
+              <h1 className={classes.typeProduct}>
+                {data?.name}
                 <br />
-                {data && data.price && data.price}
+                {data?.price}
               </h1>
             </div>
-
-            <Box
-              component="fieldset"
-              mb={5}
-              borderColor="transparent"
-              style={{ direction: "ltr", marginLeft: "10%" }}
-            >
-              <Rating
-                name="simple-controlled"
-                value={data && data.rate && data.rate}
-              />
-            </Box>
+            <div className={classes.rate}>
+              <Rating value={data?.rate} />
+            </div>
           </div>
+
           <div className={classes.commentMain}>
             <AddIcon className={classes.icon} />
-            {data?.comments &&
-              data?.comments.map((a) => (
-                <div className={classes.comment}>
-                  <p className={classes.pCommentM}>{a.message}</p>
-                  <p className={classes.pComment}>
-                    {a.createDate.slice(0, 11)}
-                  </p>
+            {data?.comments.map((data) => (
+              <div className={classes.comment}>
+                <p className={classes.CommentMessage}>{data.message}</p>
+                <p className={classes.Comments}>
+                  {data.createDate.slice(0, 11)}
+                </p>
 
-                  <p className={classes.pComment}>{a.createDate.slice(12)}</p>
+                <p className={classes.Comments}>{data.createDate.slice(12)}</p>
 
-                  <p className={classes.pComment}>{a.username}</p>
-                  <img className={classes.imgComment} src={a?.profileImage} />
-                </div>
-              ))}
+                <p className={classes.Comments}>{data.username}</p>
+                <img className={classes.imgComment} src={data?.profileImage} />
+              </div>
+            ))}
           </div>
+
           <p className={classes.Back}>
             <Link className={classes.Link} to="/DataProduct">
               back now!
             </Link>
-
             <hr />
           </p>
         </div>
@@ -114,7 +109,7 @@ const useStyles = makeStyles({
     background: "#D2691E ",
     width: "100%",
     overflow: "hidden",
-    height: "1000px",
+    height: "1200px",
   },
   commentMain: {
     background: "#8B4513",
@@ -144,7 +139,7 @@ const useStyles = makeStyles({
   p: {
     color: "#F4A460",
   },
-  dir: {
+  boxImage: {
     direction: "rtl",
   },
   styleComment: {
@@ -167,7 +162,7 @@ const useStyles = makeStyles({
       flexDirection: "column",
     },
   },
-  textH: {
+  typeProduct: {
     color: "#ffff",
     fontSize: "9vw",
     fontFamily: "italy",
@@ -229,7 +224,9 @@ const useStyles = makeStyles({
       flexDirection: "column-reverse",
     },
   },
-
+  rate: {
+    textAlign: "center",
+  },
   icon: {
     color: "#F4A460",
     fontSize: "50px",
@@ -240,13 +237,13 @@ const useStyles = makeStyles({
       fontSize: "40px",
     },
   },
-  pComment: {
+  Comments: {
     width: "30%",
     color: "#ffff",
     display: "flex",
     justifyContent: "center",
   },
-  pCommentM: {
+  CommentMessage: {
     width: "100%",
     color: "#ffff",
     display: "flex",

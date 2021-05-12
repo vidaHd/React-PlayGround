@@ -1,14 +1,14 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Product from "./components/Product";
-import Dashboard from "./components/Dashboard";
-import Login from "./components/Login";
+import Product from "./components/admin/Product";
+import Dashboard from "./components/admin/Dashboard";
+import Login from "./components/admin/Login";
 import NotFound from "./components/NotFound";
-import Order from "./components/Order";
-import Languege from "./components/Languege";
-import tableApi from "./components/TableApi";
-import DataProduct from "./components/DataProducts";
-import CommentProduct from "./components/CommentProduct";
+import Order from "./components/admin/Order";
+import tableApi from "./components/admin/TableApi";
+import DataProduct from "./components/user/DataProducts";
+import CommentProduct from "./components/user/CommentProduct";
+
 import "./App.css";
 
 function App() {

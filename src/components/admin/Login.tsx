@@ -3,9 +3,9 @@ import { useState, useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { loginUser } from "../redux/actions";
+import { loginUser } from "../../redux/actions";
 
-import { getData } from "../Utilities/ApiTest";
+import { getData } from "../../Utilities/ApiTest";
 
 import {
   makeStyles,
