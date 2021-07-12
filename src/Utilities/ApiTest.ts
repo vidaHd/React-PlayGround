@@ -7,7 +7,7 @@ export const getData = (url): any => {
       .then((apiResult) => {
         setTimeout(() => {
           res(apiResult.data);
-        }, 2000);
+        }, 1000);
       })
       .catch((err) => {
         rej(err);

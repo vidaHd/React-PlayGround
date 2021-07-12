@@ -8,6 +8,7 @@ import Order from "./components/admin/Order";
 import tableApi from "./components/admin/TableApi";
 import DataProduct from "./components/user/DataProducts";
 import CommentProduct from "./components/user/CommentProduct";
+import Recent from "./components/user/RecentVisit";
 
 import "./App.css";
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/Languege" component={tableApi} />
         <Route path="/DataProduct" component={DataProduct} />
         <Route path="/ShowProduct" component={CommentProduct} />
+        <Route path="/Recent" component={Recent} />
 
         <Route path="*" component={NotFound} />
       </Switch>

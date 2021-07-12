@@ -8,36 +8,49 @@ import AddIcon from "@material-ui/icons/Add";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Rating from "@material-ui/lab/Rating";
 
-import AOS from "aos";
+import Recent from "./RecentVisit";
+
+import { connect } from "react-redux";
+import { id } from "date-fns/locale";
 
 interface Idata {
-  name: string;
-  price: string;
-  image: string;
-  id: number;
-  rate: number;
-  comments: any;
+  name?: string;
+  price?: string;
+  image?: string;
+  id?: number;
+  rate?: number;
+  comments?: any;
 }
 
 const CommentProduct = (): JSX.Element => {
   const classes: any = useStyles();
 
-  const [data, setData] = useState<Idata>();
+  const [data, setData] = useState<Idata | any>();
 
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const pathname = window.location.pathname;
     const id = pathname.slice(13, pathname.length);
-    const url = ` http://localhost:3000/products/${id}`;
+    const prevArr: string | null = localStorage.getItem("recently");
+    if (!prevArr) {
+      const newArr: string[] = [];
+      newArr.push(id);
+      localStorage.setItem("recently", JSON.stringify(newArr));
+    } else {
+      const arr: string[] = JSON.parse(prevArr);
+      arr.push(id);
+      localStorage.setItem("recently", JSON.stringify(arr));
+    }
 
+    const url = ` http://localhost:3000/products/${id}`;
     getData(url).then((res) => {
       setData(res);
+      const JsonResult = JSON.stringify(res);
+      const a = localStorage.setItem("res", JsonResult);
       setLoading(false);
     });
   }, []);
-
-  AOS.init();
 
   return (
     <>
@@ -95,7 +108,11 @@ const CommentProduct = (): JSX.Element => {
     </>
   );
 };
-export default CommentProduct;
+const mapStateToProps = (state) => {
+  console.log("mystate");
+};
+
+export default connect(mapStateToProps, null)(CommentProduct);
 
 const useStyles = makeStyles({
   loading: {

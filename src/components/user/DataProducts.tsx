@@ -86,9 +86,11 @@ export default function DataProduct(): JSX.Element {
       <div className={classes.txt}>
         <h1 className={classes.posHT}>JOIN THE CLUB,</h1>
       </div>
+
       <div>
-        <h1>Recent Visits</h1>
+        <Link to="./Recent">Recent Visits</Link>
       </div>
+
       <div className={classes.gif}></div>
       <div className={classes.footer}>
         <div className={classes.footerTexr}>
