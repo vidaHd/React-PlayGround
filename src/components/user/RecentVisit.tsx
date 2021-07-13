@@ -1,13 +1,36 @@
 import { connect } from "react-redux";
 import { useState, useEffect } from "react";
+
 const Recent = () => {
-  const [local, setLocal] = useState<string[] | null>();
+  const [local, setLocal] = useState<string[]>([]);
+
   useEffect(() => {
-    const convert: string[] = JSON.parse(
-      localStorage.getItem("recently") ?? ""
-    );
+    const convert: any = JSON.parse(localStorage.getItem("recently") ?? "");
+    for (let i = 0; i < convert?.length; i++) {
+      for (let j = 0; j < convert?.length; j++) {
+        if (convert[i] == convert[j] && i !== j) {
+          console.log(i, j, "yes");
+          convert[j] = null;
+        }
+      }
+    }
     setLocal(convert);
   }, []);
+  // console.log(local);
+
+  // useEffect(() => {
+  //   const localUniq: any = [...local];
+  //   for (let i = 0; i < localUniq?.length; i++) {
+  //     for (let j = 0; j < localUniq?.length; j++) {
+  //       if (localUniq[i] == localUniq[j] && i !== j) {
+  //         console.log(i, j, "yes");
+  //         localUniq[j] = null;
+  //       }
+  //     }
+  //   }
+  //   setLocal(localUniq);
+  //   console.log(localUniq, "uniq");
+  // }, [local]);
 
   return (
     <>
