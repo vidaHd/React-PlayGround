@@ -1,5 +1,30 @@
 import { connect } from "react-redux";
 import { useState, useEffect } from "react";
+import { createStyles, makeStyles, withStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+
+const useStyles = makeStyles({
+  table: {
+    minWidth: 650,
+  },
+});
+const StyledTableCell = withStyles((theme: any) =>
+  createStyles({
+    head: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    body: {
+      fontSize: 14,
+    },
+  })
+)(TableCell);
 
 const Recent = () => {
   const [local, setLocal] = useState<string[]>([]);
@@ -9,45 +34,46 @@ const Recent = () => {
     for (let i = 0; i < convert?.length; i++) {
       for (let j = 0; j < convert?.length; j++) {
         if (convert[i] == convert[j] && i !== j) {
-          console.log(i, j, "yes");
           convert[j] = null;
         }
       }
     }
-    setLocal(convert);
-  }, []);
-  // console.log(local);
+    const filtered = convert.filter(function (el) {
+      return el != null;
+    });
 
-  // useEffect(() => {
-  //   const localUniq: any = [...local];
-  //   for (let i = 0; i < localUniq?.length; i++) {
-  //     for (let j = 0; j < localUniq?.length; j++) {
-  //       if (localUniq[i] == localUniq[j] && i !== j) {
-  //         console.log(i, j, "yes");
-  //         localUniq[j] = null;
-  //       }
-  //     }
-  //   }
-  //   setLocal(localUniq);
-  //   console.log(localUniq, "uniq");
-  // }, [local]);
+    setLocal(filtered);
+  }, []);
 
   return (
     <>
-      {local?.map((x) => (
+      <div
+        style={{ background: "#FFDEAD", height: "950px", overflow: "hidden" }}
+      >
         <div
-          style={{
-            background: "blue",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column",
-            color: "#ffff",
-          }}
-        >
-          <p style={{ background: "red" }}>{x}</p>
+          style={{ width: "100%", background: "#8B4513", height: "50px" }}
+        ></div>
+        <div style={{ width: "50%", margin: "auto", marginTop: "200px" }}>
+          <TableContainer component={Paper}>
+            <Table aria-label="customized table">
+              <TableHead>
+                <TableRow>
+                  <TableCell style={{ background: "#8B4513", color: "#ffff" }}>
+                    Name Product
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {local.map((row) => (
+                  <TableRow key={row}>
+                    <TableCell>{row}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </div>
-      ))}
+      </div>
     </>
   );
 };

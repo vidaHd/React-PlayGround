@@ -35,11 +35,11 @@ const CommentProduct = (): JSX.Element => {
     const prevArr: string | null = localStorage.getItem("recently");
     if (!prevArr) {
       const newArr: string[] = [];
-      newArr.push(id);
+      newArr.unshift(id);
       localStorage.setItem("recently", JSON.stringify(newArr));
     } else {
       const arr: string[] = JSON.parse(prevArr);
-      arr.push(id);
+      arr.unshift(id);
       localStorage.setItem("recently", JSON.stringify(arr));
     }
 

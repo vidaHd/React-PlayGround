@@ -84,11 +84,14 @@ export default function DataProduct(): JSX.Element {
       </div>
 
       <div className={classes.txt}>
-        <h1 className={classes.posHT}>JOIN THE CLUB,</h1>
-      </div>
-
-      <div>
-        <Link to="./Recent">Recent Visits</Link>
+        <h1 className={classes.posHT}>
+          <Link
+            to="./Recent"
+            style={{ color: "black", textDecoration: "none" }}
+          >
+            Recent Visit
+          </Link>
+        </h1>
       </div>
 
       <div className={classes.gif}></div>
@@ -267,6 +270,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#f8bf50",
+    textDecoration: "none",
   },
   footer: {
     background: "#804224",
