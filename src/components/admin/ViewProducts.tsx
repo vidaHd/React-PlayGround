@@ -28,6 +28,7 @@ import EditModalFunction from "./EditeModal";
 
 import { IrowItem, Iclases } from "../../interface/interface";
 
+
 export const View = (props): JSX.Element => {
   const classes: Iclases = useStyles({ darkMode: true });
 
@@ -412,6 +413,7 @@ export const View = (props): JSX.Element => {
     </>
   );
 };
+
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: "flex",

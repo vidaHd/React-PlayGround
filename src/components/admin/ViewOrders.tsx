@@ -14,9 +14,11 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Snackbar,
 } from "@material-ui/core";
 
 import { Iclases } from "../../interface/interface";
+import CustomSnackBar, { ShowSnackBar } from "./CustomSnackBar";
 
 const ViewOrder = (props) => {
   const { data } = props;
@@ -101,6 +103,14 @@ const ViewOrder = (props) => {
     props.deleteOrder();
   };
 
+  const SnackBarRef = useRef<{ showSnackBar: ShowSnackBar }>();
+
+  const showMeesage = () => {
+    if (SnackBarRef?.current?.showSnackBar) {
+      SnackBarRef.current.showSnackBar("test", "success");
+    }
+  };
+
   return (
     <>
       <div>
@@ -137,6 +147,17 @@ const ViewOrder = (props) => {
         >
           send order
         </Button>
+
+        <Button
+          className={classes.btn}
+          variant="contained"
+          color="primary"
+          innerRef={btnFocus}
+          onClick={showMeesage}
+        >
+          open
+        </Button>
+        <CustomSnackBar SnackBarRef={SnackBarRef} />
 
         <Button
           className={classes.btnD}
