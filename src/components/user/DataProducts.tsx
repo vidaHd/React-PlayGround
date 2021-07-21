@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 
 import { getData } from "../../Utilities/ApiTest";
 
-import { makeStyles, Typography } from "@material-ui/core";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import { Box, makeStyles, Typography } from "@material-ui/core";
 
 import TwitterIcon from "@material-ui/icons/Twitter";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
@@ -15,6 +14,7 @@ import PersonIcon from "@material-ui/icons/Person";
 
 import gif from "../../images/g.gif";
 import ProductCard from "./ProductCard";
+import { Skeleton } from "@material-ui/lab";
 
 export default function DataProduct(): JSX.Element {
   const classes: any = useStyles();
@@ -25,11 +25,12 @@ export default function DataProduct(): JSX.Element {
 
   useEffect(() => {
     setLoading(true);
-
-    getData("http://localhost:3000/products").then((res) => {
-      setData(res);
-      setLoading(false);
-    });
+    setTimeout(() => {
+      getData("http://localhost:3000/products").then((res) => {
+        setData(res);
+        setLoading(false);
+      });
+    }, 5000);
   }, []);
 
   return (
@@ -66,20 +67,28 @@ export default function DataProduct(): JSX.Element {
 
       <div className={classes.swiper}>
         <div className={classes.main}>
-          {loading ? (
-            <CircularProgress />
-          ) : (
-            data?.map((data) => (
-              <ProductCard
-                img={data.image}
-                name={data.name}
-                price={data.price}
-                isLiked={data.isLiked}
-                id={data.id}
-                rate={data.rate}
-              />
-            ))
-          )}
+          {loading
+            ? data?.map((data) => (
+                <>
+                  <Box width={510} marginRight={0.5} my={8}>
+                    <Skeleton variant="rect" width={410} height={118} />
+                    <Box pt={0.5}>
+                      <Skeleton />
+                      <Skeleton width="60%" />
+                    </Box>
+                  </Box>
+                </>
+              ))
+            : data?.map((data) => (
+                <ProductCard
+                  img={data.image}
+                  name={data.name}
+                  price={data.price}
+                  isLiked={data.isLiked}
+                  id={data.id}
+                  rate={data.rate}
+                />
+              ))}
         </div>
       </div>
 
@@ -87,9 +96,9 @@ export default function DataProduct(): JSX.Element {
         <h1 className={classes.posHT}>
           <Link
             to="./Recent"
-            style={{ color: "black", textDecoration: "none" }}
+            style={{ color: "black", textDecoration: "none", width: "300px" }}
           >
-            Recent Visit
+            {loading ? <Skeleton width="100%" /> : "Recent Visit"}
           </Link>
         </h1>
       </div>
