@@ -8,10 +8,7 @@ import AddIcon from "@material-ui/icons/Add";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Rating from "@material-ui/lab/Rating";
 
-import Recent from "./RecentVisit";
-
 import { connect } from "react-redux";
-import { id } from "date-fns/locale";
 
 interface Idata {
   name?: string;

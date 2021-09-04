@@ -11,7 +11,7 @@ import CommentProduct from "./components/user/CommentProduct";
 import Recent from "./components/user/RecentVisit";
 
 import "./App.css";
-import FunctionEqual from "./components/admin/Function";
+import Dynamic from "./components/admin/DynamicInput";
 
 function App() {
   return (
@@ -24,8 +24,8 @@ function App() {
         <Route path="/Languege" component={tableApi} />
         <Route path="/DataProduct" component={DataProduct} />
         <Route path="/ShowProduct" component={CommentProduct} />
-        <Route path="/Recent" component={Recent} />
-        <Route path="/Function" component={FunctionEqual} />
+        <Route path="/Dynamic" component={Dynamic} />
+        {/* <Route path="/Dynamic" component={Dynamic} /> */}
 
         <Route path="*" component={NotFound} />
       </Switch>
