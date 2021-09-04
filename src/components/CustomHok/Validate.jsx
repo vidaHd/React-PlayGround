@@ -9,11 +9,6 @@ import { CHANGE_INPUT } from "../redux/constans/index";
 import { VALUE_INPUT } from "../redux/constans/index";
 import { connect } from "react-redux";
 
-const UserContext = createContext({
-  username: "",
-  updateUsername: () => {},
-});
-
 function Validate(props) {
   const [isFormValid, validationErrors, validateInput] = useValid();
 
